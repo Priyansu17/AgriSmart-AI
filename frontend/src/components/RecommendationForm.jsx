@@ -270,10 +270,10 @@ export default function RecommendationForm({
       {/* Top Banner & Title Card */}
       <ScrollReveal animation="fade-down" duration={500}>
         <div className="bg-white dark:bg-forest-900/90 rounded-3xl p-6 sm:p-8 border border-agri-100 dark:border-forest-800 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 min-w-0 flex-1">
-              <div className="flex-shrink-0">
+          <div className="flex flex-col gap-6">
+            {/* Row 1: Farmer + Title side by side */}
+            <div className="flex flex-row items-start gap-4">
+              <div className="flex-shrink-0 hidden sm:block">
                 <FarmerCharacter 
                   character="ramesh"
                   size="sm"
@@ -281,22 +281,22 @@ export default function RecommendationForm({
                   showContinuousWave={true}
                 />
               </div>
-              <div className="min-w-0 w-full">
+              <div className="min-w-0 flex-1">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-agri-100 dark:bg-agri-950/80 text-agri-800 dark:text-agri-300 text-xs font-bold uppercase tracking-wider mb-2 border border-agri-200 dark:border-forest-800">
                   <Sparkles className="w-3.5 h-3.5 text-agri-600 dark:text-agri-400" />
                   <span>{t('formBadge') || 'Multi-Factor Agronomic Input'}</span>
                 </div>
-                <h2 className="text-xl sm:text-3xl font-extrabold text-forest-950 dark:text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-forest-950 dark:text-white tracking-tight">
                   {t('formTitle') || 'Soil Parameters & Crop Recommendation'}
                 </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-xl">
+                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl">
                   {t('formSubtitle') || 'Provide the 7 measured parameters in the exact feature sequence evaluated by the trained neural network model.'}
                 </p>
               </div>
             </div>
 
-            {/* Quick Actions: Sample Presets & Reset */}
-            <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
+            {/* Row 2: Quick Actions */}
+            <div className="flex flex-wrap items-center gap-2.5 w-full">
               {samplePresets.length > 0 && (
                 <div className="relative flex-1 md:flex-none">
                   <select
