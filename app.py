@@ -459,6 +459,48 @@ try:
 except Exception as e:
     print(f"Warning: Could not read metrics file: {e}")
 
+# Environment flag: True if running on Render cloud, False on localhost/Cloudflare
+IS_RENDER = os.environ.get('RENDER') == 'true' or bool(os.environ.get('RENDER_SERVICE_ID'))
+
+# Pre-load neural network weights for Render cloud optimization (instant <1ms inference)
+NUMPY_WEIGHTS = None
+WEIGHTS_FILE = os.path.join(BASE_DIR, 'models', 'model_weights.npz')
+if os.path.exists(WEIGHTS_FILE):
+    try:
+        _w_data = np.load(WEIGHTS_FILE)
+        NUMPY_WEIGHTS = [_w_data[k] for k in _w_data.files]
+        print(f"NumPy inference weights loaded for cloud inference ({len(NUMPY_WEIGHTS)} arrays).")
+    except Exception as _e:
+        print(f"Notice: NumPy weights could not be loaded: {_e}")
+
+def run_prediction_inference(x_scaled):
+    """
+    Conditional inference engine:
+    - If running on Render: Uses ultra-lightweight NumPy forward pass from identical weights.
+      Eliminates TensorFlow thread-locking, C++ overhead, and 30-60s freezing on Render's 0.1 CPU tier.
+    - If running on Localhost or Cloudflare tunnel: Uses original TensorFlow model.predict directly
+      without any changes.
+    """
+    global NUMPY_WEIGHTS
+    if IS_RENDER:
+        if NUMPY_WEIGHTS is None and model is not None:
+            try:
+                NUMPY_WEIGHTS = model.get_weights()
+            except Exception:
+                pass
+        if NUMPY_WEIGHTS and len(NUMPY_WEIGHTS) == 8:
+            W1, b1, W2, b2, W3, b3, W4, b4 = NUMPY_WEIGHTS
+            z1 = np.maximum(0, x_scaled @ W1 + b1)
+            z2 = np.maximum(0, z1 @ W2 + b2)
+            z3 = np.maximum(0, z2 @ W3 + b3)
+            z4 = z3 @ W4 + b4
+            e = np.exp(z4 - np.max(z4, axis=-1, keepdims=True))
+            return e / np.sum(e, axis=-1, keepdims=True)
+
+    # Standard Localhost / Cloudflare tunnel execution via TensorFlow model.predict
+    return model.predict(x_scaled, verbose=0)
+
+
 
 def load_history():
     """Loads prediction history from JSON storage file."""
@@ -577,13 +619,13 @@ def predict_crop():
 
     try:
         # 3. Exact order: N, P, K, temperature, humidity, ph, rainfall
-        input_arr = np.array([features_numeric], dtype=np.float32)
+        df_input = pd.DataFrame([features_numeric], columns=FEATURE_ORDER)
 
         # 4. Apply existing trained scaler
-        input_scaled = scaler.transform(input_arr)
+        input_scaled = scaler.transform(df_input)
 
         # 5. Run inference on loaded Keras model
-        probabilities = model.predict(input_scaled, verbose=0)[0]
+        probabilities = run_prediction_inference(input_scaled)[0]
 
         # 6. Rank all predictions
         sorted_indices = np.argsort(probabilities)[::-1]
@@ -974,7 +1016,7 @@ def chat_endpoint():
         try:
             input_vector = [eval_features[f] for f in FEATURE_ORDER]
             features_scaled = scaler.transform([input_vector])
-            probabilities = model.predict(features_scaled, verbose=0)[0]
+            probabilities = run_prediction_inference(features_scaled)[0]
             top_idx = int(np.argmax(probabilities))
             predicted_crop = label_encoder.inverse_transform([top_idx])[0]
             conf = round(float(probabilities[top_idx]) * 100, 2)
