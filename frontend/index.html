@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D752D'><path d='M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2zm1 4.07A8.001 8.001 0 0 0 4.07 13c1.23.018 2.45-.19 3.6-.615 3.32-1.226 5.688-4.148 6.33-7.315zm5.93 6.93c-.018-1.23-.226-2.45-.652-3.6-1.226-3.32-4.148-5.688-7.315-6.33A8.001 8.001 0 0 1 18.93 13z'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgriSmart AI — Intelligent Crop Recommendation System</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Print Stylesheet -->
+    <style>
+      @media print {
+        /* Hide UI chrome */
+        nav, header, footer,
+        .print\:hidden,
+        iframe,
+        [data-chatbot],
+        .fixed,
+        button,
+        [role="dialog"] {
+          display: none !important;
+        }
+
+        /* Page setup */
+        @page {
+          margin: 12mm;
+          size: A4 portrait;
+        }
+
+        /* Crucial: reset opacity and transforms so ScrollReveal elements don't print as blank */
+        *, *::before, *::after {
+          opacity: 1 !important;
+          transform: none !important;
+          visibility: visible !important;
+          animation: none !important;
+          transition: none !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+        }
+
+        html, body {
+          font-family: Arial, sans-serif !important;
+          font-size: 11pt !important;
+          color: #0f172a !important;
+          background: #ffffff !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        /* Backgrounds: Convert all dark/gradient backgrounds to clean white with border */
+        [class*="bg-forest"],
+        [class*="bg-emerald"],
+        [class*="bg-slate"],
+        [class*="bg-amber"],
+        [class*="bg-blue"],
+        [class*="bg-gradient"],
+        [class*="from-forest"],
+        [class*="from-agri"],
+        [class*="from-emerald"],
+        [class*="from-amber"],
+        [class*="from-blue"] {
+          background: #ffffff !important;
+          background-color: #ffffff !important;
+          background-image: none !important;
+          color: #0f172a !important;
+          border: 1px solid #cbd5e1 !important;
+          border-radius: 6px !important;
+        }
+
+        /* Cards: simple border & padding */
+        .rounded-3xl, .rounded-2xl, .rounded-xl {
+          border-radius: 6px !important;
+          padding: 14px !important;
+        }
+
+        /* Make dark text readable */
+        [class*="text-white"],
+        [class*="text-slate-200"],
+        [class*="text-slate-300"],
+        [class*="text-slate-400"],
+        [class*="text-agri"],
+        [class*="text-emerald"],
+        [class*="text-forest"],
+        [class*="text-amber"] {
+          color: #0f172a !important;
+        }
+
+        /* Print header & block display */
+        .print\:block {
+          display: block !important;
+        }
+
+        /* Reset layout widths */
+        .max-w-5xl, .max-w-4xl, .max-w-3xl, .max-w-2xl {
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Clean 2-page flow: Break before agronomic profile */
+        .print-break-before {
+          page-break-before: always !important;
+          break-before: page !important;
+        }
+
+        tr, table {
+          page-break-inside: avoid !important;
+          break-inside: avoid !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-[#F7F9F6] text-slate-800">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

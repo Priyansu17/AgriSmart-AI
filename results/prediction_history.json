@@ -1,0 +1,1590 @@
+[
+  {
+    "id": 1793304584386,
+    "timestamp": "2026-10-30 01:39:44",
+    "predicted_crop": "muskmelon",
+    "confidence": 62.34,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "muskmelon",
+        "confidence": 62.34
+      },
+      {
+        "rank": 2,
+        "crop": "papaya",
+        "confidence": 37.66
+      },
+      {
+        "rank": 3,
+        "crop": "mungbean",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 43.4,
+      "humidity": 92.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793295280294,
+    "timestamp": "2026-10-29 23:04:40",
+    "predicted_crop": "cotton",
+    "confidence": 71.52,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "cotton",
+        "confidence": 71.52
+      },
+      {
+        "rank": 2,
+        "crop": "maize",
+        "confidence": 28.27
+      },
+      {
+        "rank": 3,
+        "crop": "banana",
+        "confidence": 0.08
+      }
+    ],
+    "inputs": {
+      "N": 107.0,
+      "P": 58.0,
+      "K": 49.0,
+      "temperature": 20.9,
+      "humidity": 67.6,
+      "ph": 6.5,
+      "rainfall": 89.3
+    }
+  },
+  {
+    "id": 1793294482947,
+    "timestamp": "2026-10-29 22:51:22",
+    "predicted_crop": "apple",
+    "confidence": 95.05,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "apple",
+        "confidence": 95.05
+      },
+      {
+        "rank": 2,
+        "crop": "grapes",
+        "confidence": 4.11
+      },
+      {
+        "rank": 3,
+        "crop": "papaya",
+        "confidence": 0.65
+      }
+    ],
+    "inputs": {
+      "N": 55.0,
+      "P": 99.0,
+      "K": 104.0,
+      "temperature": 19.3,
+      "humidity": 92.0,
+      "ph": 6.5,
+      "rainfall": 90.6
+    }
+  },
+  {
+    "id": 1793293804588,
+    "timestamp": "2026-10-29 22:40:04",
+    "predicted_crop": "jute",
+    "confidence": 73.12,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "jute",
+        "confidence": 73.12
+      },
+      {
+        "rank": 2,
+        "crop": "rice",
+        "confidence": 26.74
+      },
+      {
+        "rank": 3,
+        "crop": "papaya",
+        "confidence": 0.14
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 33.3,
+      "humidity": 82.0,
+      "ph": 8.2,
+      "rainfall": 237.7
+    }
+  },
+  {
+    "id": 1793292596542,
+    "timestamp": "2026-10-29 22:19:56",
+    "predicted_crop": "coffee",
+    "confidence": 67.16,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "coffee",
+        "confidence": 67.16
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 32.72
+      },
+      {
+        "rank": 3,
+        "crop": "maize",
+        "confidence": 0.12
+      }
+    ],
+    "inputs": {
+      "N": 146.0,
+      "P": 96.0,
+      "K": 0.0,
+      "temperature": 30.8,
+      "humidity": 54.1,
+      "ph": 7.8,
+      "rainfall": 240.8
+    }
+  },
+  {
+    "id": 1793292243604,
+    "timestamp": "2026-10-29 22:14:03",
+    "predicted_crop": "lentil",
+    "confidence": 89.59,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "lentil",
+        "confidence": 89.59
+      },
+      {
+        "rank": 2,
+        "crop": "watermelon",
+        "confidence": 4.15
+      },
+      {
+        "rank": 3,
+        "crop": "mothbeans",
+        "confidence": 4.12
+      }
+    ],
+    "inputs": {
+      "N": 72.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 70.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793038433982,
+    "timestamp": "2026-10-26 23:43:53",
+    "predicted_crop": "banana",
+    "confidence": 42.59,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "banana",
+        "confidence": 42.59
+      },
+      {
+        "rank": 2,
+        "crop": "lentil",
+        "confidence": 25.0
+      },
+      {
+        "rank": 3,
+        "crop": "blackgram",
+        "confidence": 17.53
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 114.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 65.0,
+      "ph": 6.5,
+      "rainfall": 58.5
+    }
+  },
+  {
+    "id": 1793034893823,
+    "timestamp": "2026-10-26 22:44:53",
+    "predicted_crop": "watermelon",
+    "confidence": 96.69,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 96.69
+      },
+      {
+        "rank": 2,
+        "crop": "maize",
+        "confidence": 2.16
+      },
+      {
+        "rank": 3,
+        "crop": "cotton",
+        "confidence": 0.38
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 17.6,
+      "humidity": 78.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793033924218,
+    "timestamp": "2026-10-26 22:28:44",
+    "predicted_crop": "watermelon",
+    "confidence": 95.52,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 95.52
+      },
+      {
+        "rank": 2,
+        "crop": "maize",
+        "confidence": 3.04
+      },
+      {
+        "rank": 3,
+        "crop": "cotton",
+        "confidence": 0.44
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 17.9,
+      "humidity": 77.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793033873037,
+    "timestamp": "2026-10-26 22:27:53",
+    "predicted_crop": "watermelon",
+    "confidence": 99.51,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 99.51
+      },
+      {
+        "rank": 2,
+        "crop": "muskmelon",
+        "confidence": 0.48
+      },
+      {
+        "rank": 3,
+        "crop": "cotton",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 99.0,
+      "P": 17.0,
+      "K": 50.0,
+      "temperature": 25.6,
+      "humidity": 85.0,
+      "ph": 6.5,
+      "rainfall": 50.8
+    }
+  },
+  {
+    "id": 1793033855987,
+    "timestamp": "2026-10-26 22:27:35",
+    "predicted_crop": "watermelon",
+    "confidence": 99.51,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 99.51
+      },
+      {
+        "rank": 2,
+        "crop": "muskmelon",
+        "confidence": 0.48
+      },
+      {
+        "rank": 3,
+        "crop": "cotton",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 99.0,
+      "P": 17.0,
+      "K": 50.0,
+      "temperature": 25.6,
+      "humidity": 85.0,
+      "ph": 6.5,
+      "rainfall": 50.8
+    }
+  },
+  {
+    "id": 1793031322401,
+    "timestamp": "2026-10-26 21:45:22",
+    "predicted_crop": "watermelon",
+    "confidence": 94.86,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 94.86
+      },
+      {
+        "rank": 2,
+        "crop": "maize",
+        "confidence": 3.42
+      },
+      {
+        "rank": 3,
+        "crop": "lentil",
+        "confidence": 0.48
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 18.4,
+      "humidity": 76.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793031265294,
+    "timestamp": "2026-10-26 21:44:25",
+    "predicted_crop": "watermelon",
+    "confidence": 92.43,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 92.43
+      },
+      {
+        "rank": 2,
+        "crop": "maize",
+        "confidence": 5.33
+      },
+      {
+        "rank": 3,
+        "crop": "lentil",
+        "confidence": 0.67
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 18.6,
+      "humidity": 75.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793030298452,
+    "timestamp": "2026-10-26 21:28:18",
+    "predicted_crop": "rice",
+    "confidence": 61.2,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.2
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.8
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  },
+  {
+    "id": 1793020344944,
+    "timestamp": "2026-10-26 18:42:24",
+    "predicted_crop": "watermelon",
+    "confidence": 94.99,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 94.99
+      },
+      {
+        "rank": 2,
+        "crop": "lentil",
+        "confidence": 1.93
+      },
+      {
+        "rank": 3,
+        "crop": "maize",
+        "confidence": 1.37
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 21.6,
+      "humidity": 72.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793018855666,
+    "timestamp": "2026-10-26 18:17:35",
+    "predicted_crop": "watermelon",
+    "confidence": 95.21,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 95.21
+      },
+      {
+        "rank": 2,
+        "crop": "lentil",
+        "confidence": 2.01
+      },
+      {
+        "rank": 3,
+        "crop": "maize",
+        "confidence": 1.05
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 21.9,
+      "humidity": 72.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1793018714673,
+    "timestamp": "2026-10-26 18:15:14",
+    "predicted_crop": "rice",
+    "confidence": 61.18,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.18
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.82
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  },
+  {
+    "id": 1793016186397,
+    "timestamp": "2026-10-26 17:33:06",
+    "predicted_crop": "watermelon",
+    "confidence": 94.47,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 94.47
+      },
+      {
+        "rank": 2,
+        "crop": "lentil",
+        "confidence": 2.41
+      },
+      {
+        "rank": 3,
+        "crop": "maize",
+        "confidence": 1.23
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 23.3,
+      "humidity": 70.0,
+      "ph": 6.5,
+      "rainfall": 32.8
+    }
+  },
+  {
+    "id": 1792949547276,
+    "timestamp": "2026-10-25 23:02:27",
+    "predicted_crop": "rice",
+    "confidence": 61.2,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.2
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.8
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  },
+  {
+    "id": 1792948487568,
+    "timestamp": "2026-10-25 22:44:47",
+    "predicted_crop": "rice",
+    "confidence": 61.18,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.18
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.82
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  },
+  {
+    "id": 1792947656912,
+    "timestamp": "2026-10-25 22:30:56",
+    "predicted_crop": "rice",
+    "confidence": 61.2,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.2
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.8
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  },
+  {
+    "id": 1792840581344,
+    "timestamp": "2026-10-24 16:46:21",
+    "predicted_crop": "watermelon",
+    "confidence": 89.2,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "watermelon",
+        "confidence": 89.2
+      },
+      {
+        "rank": 2,
+        "crop": "lentil",
+        "confidence": 6.45
+      },
+      {
+        "rank": 3,
+        "crop": "muskmelon",
+        "confidence": 3.39
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 25.8,
+      "humidity": 70.0,
+      "ph": 6.5,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1792827718114,
+    "timestamp": "2026-10-24 13:11:58",
+    "predicted_crop": "grapes",
+    "confidence": 99.63,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "grapes",
+        "confidence": 99.63
+      },
+      {
+        "rank": 2,
+        "crop": "lentil",
+        "confidence": 0.35
+      },
+      {
+        "rank": 3,
+        "crop": "chickpea",
+        "confidence": 0.02
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 118.0,
+      "K": 153.0,
+      "temperature": 30.3,
+      "humidity": 64.4,
+      "ph": 7.6,
+      "rainfall": 30.0
+    }
+  },
+  {
+    "id": 1792820887860,
+    "timestamp": "2026-10-24 11:18:07",
+    "predicted_crop": "coffee",
+    "confidence": 99.46,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "coffee",
+        "confidence": 99.46
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 0.54
+      },
+      {
+        "rank": 3,
+        "crop": "rice",
+        "confidence": 0.01
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 29.6,
+      "humidity": 43.0,
+      "ph": 6.5,
+      "rainfall": 255.8
+    }
+  },
+  {
+    "id": 1792820860910,
+    "timestamp": "2026-10-24 11:17:40",
+    "predicted_crop": "maize",
+    "confidence": 73.2,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "maize",
+        "confidence": 73.2
+      },
+      {
+        "rank": 2,
+        "crop": "cotton",
+        "confidence": 25.13
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.82
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 26.1,
+      "humidity": 65.0,
+      "ph": 6.5,
+      "rainfall": 78.1
+    }
+  },
+  {
+    "id": 1792820035458,
+    "timestamp": "2026-10-24 11:03:55",
+    "predicted_crop": "maize",
+    "confidence": 57.58,
+    "top_3": [
+      "maize (57.58%)",
+      "cotton (40.58%)",
+      "watermelon (1.02%)"
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 25.8,
+      "humidity": 67.0,
+      "ph": 6.5,
+      "rainfall": 78.1
+    }
+  },
+  {
+    "id": 1792760789086,
+    "timestamp": "2026-10-23 18:36:29",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792758766273,
+    "timestamp": "2026-10-23 18:02:46",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792757803815,
+    "timestamp": "2026-10-23 17:46:43",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792756988814,
+    "timestamp": "2026-10-23 17:33:08",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792756211710,
+    "timestamp": "2026-10-23 17:20:11",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792756150511,
+    "timestamp": "2026-10-23 17:19:10",
+    "predicted_crop": "rice",
+    "confidence": 61.2,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.2
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.8
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  },
+  {
+    "id": 1792754860140,
+    "timestamp": "2026-10-23 16:57:40",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792751633329,
+    "timestamp": "2026-10-23 16:03:53",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792689973242,
+    "timestamp": "2026-10-22 22:56:13",
+    "predicted_crop": "rice",
+    "confidence": 50.46,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 50.46
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 49.54
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 7.2,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792689271133,
+    "timestamp": "2026-10-22 22:44:31",
+    "predicted_crop": "chickpea",
+    "confidence": 99.19,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "chickpea",
+        "confidence": 99.19
+      },
+      {
+        "rank": 2,
+        "crop": "pigeonpeas",
+        "confidence": 0.34
+      },
+      {
+        "rank": 3,
+        "crop": "kidneybeans",
+        "confidence": 0.14
+      }
+    ],
+    "inputs": {
+      "N": 139.0,
+      "P": 125.0,
+      "K": 127.0,
+      "temperature": 34.6,
+      "humidity": 36.0,
+      "ph": 7.7,
+      "rainfall": 134.0
+    }
+  },
+  {
+    "id": 1792518844407,
+    "timestamp": "2026-10-20 23:24:04",
+    "predicted_crop": "rice",
+    "confidence": 60.96,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.96
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.04
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.5,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.5
+    }
+  },
+  {
+    "id": 1792499566042,
+    "timestamp": "2026-10-20 18:02:46",
+    "predicted_crop": "coconut",
+    "confidence": 55.96,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "coconut",
+        "confidence": 55.96
+      },
+      {
+        "rank": 2,
+        "crop": "rice",
+        "confidence": 36.49
+      },
+      {
+        "rank": 3,
+        "crop": "jute",
+        "confidence": 4.34
+      }
+    ],
+    "inputs": {
+      "N": 29.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792499551344,
+    "timestamp": "2026-10-20 18:02:31",
+    "predicted_crop": "rice",
+    "confidence": 60.88,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.88
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.12
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.5
+    }
+  },
+  {
+    "id": 1792499531047,
+    "timestamp": "2026-10-20 18:02:11",
+    "predicted_crop": "jute",
+    "confidence": 62.57,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "jute",
+        "confidence": 62.57
+      },
+      {
+        "rank": 2,
+        "crop": "papaya",
+        "confidence": 29.61
+      },
+      {
+        "rank": 3,
+        "crop": "rice",
+        "confidence": 4.16
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 97.0,
+      "K": 43.0,
+      "temperature": 20.8,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792499506145,
+    "timestamp": "2026-10-20 18:01:46",
+    "predicted_crop": "maize",
+    "confidence": 99.98,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "maize",
+        "confidence": 99.98
+      },
+      {
+        "rank": 2,
+        "crop": "cotton",
+        "confidence": 0.01
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 71.0,
+      "P": 54.0,
+      "K": 16.0,
+      "temperature": 22.6,
+      "humidity": 63.7,
+      "ph": 5.7,
+      "rainfall": 87.5
+    }
+  },
+  {
+    "id": 1792342556113,
+    "timestamp": "2026-10-18 22:25:56",
+    "predicted_crop": "rice",
+    "confidence": 60.7,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.7
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.29
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.0
+    }
+  },
+  {
+    "id": 1792342202496,
+    "timestamp": "2026-10-18 22:20:02",
+    "predicted_crop": "rice",
+    "confidence": 61.43,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.43
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.57
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.0,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 203.0
+    }
+  },
+  {
+    "id": 1792341642319,
+    "timestamp": "2026-10-18 22:10:42",
+    "predicted_crop": "rice",
+    "confidence": 60.88,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.88
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.12
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.5
+    }
+  },
+  {
+    "id": 1792302204210,
+    "timestamp": "2026-10-18 11:13:24",
+    "predicted_crop": "rice",
+    "confidence": 55.38,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 55.38
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 44.62
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 102.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.5
+    }
+  },
+  {
+    "id": 1792301729152,
+    "timestamp": "2026-10-18 11:05:29",
+    "predicted_crop": "rice",
+    "confidence": 60.9,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 60.9
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 39.1
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.8,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.5
+    }
+  },
+  {
+    "id": 1792297765868,
+    "timestamp": "2026-10-18 09:59:25",
+    "predicted_crop": "jute",
+    "confidence": 82.28,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "jute",
+        "confidence": 82.28
+      },
+      {
+        "rank": 2,
+        "crop": "rice",
+        "confidence": 17.61
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.09
+      }
+    ],
+    "inputs": {
+      "N": 138.0,
+      "P": 82.0,
+      "K": 76.0,
+      "temperature": 13.4,
+      "humidity": 57.9,
+      "ph": 8.0,
+      "rainfall": 239.5
+    }
+  },
+  {
+    "id": 1792295815521,
+    "timestamp": "2026-10-18 09:26:55",
+    "predicted_crop": "rice",
+    "confidence": 61.19,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.19
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.81
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.8,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  },
+  {
+    "id": 1792229376748,
+    "timestamp": "2026-10-17 14:59:36",
+    "predicted_crop": "coffee",
+    "confidence": 99.92,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "coffee",
+        "confidence": 99.92
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 0.06
+      },
+      {
+        "rank": 3,
+        "crop": "maize",
+        "confidence": 0.01
+      }
+    ],
+    "inputs": {
+      "N": 91.0,
+      "P": 21.0,
+      "K": 26.0,
+      "temperature": 26.3,
+      "humidity": 57.4,
+      "ph": 7.3,
+      "rainfall": 191.5
+    }
+  },
+  {
+    "id": 1792229319480,
+    "timestamp": "2026-10-17 14:58:39",
+    "predicted_crop": "rice",
+    "confidence": 61.2,
+    "top_3": [
+      {
+        "rank": 1,
+        "crop": "rice",
+        "confidence": 61.2
+      },
+      {
+        "rank": 2,
+        "crop": "jute",
+        "confidence": 38.8
+      },
+      {
+        "rank": 3,
+        "crop": "coffee",
+        "confidence": 0.0
+      }
+    ],
+    "inputs": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 20.9,
+      "humidity": 82.0,
+      "ph": 6.5,
+      "rainfall": 202.9
+    }
+  }
+]

@@ -1,0 +1,266 @@
+{
+  "rice": {
+    "cultivation": {
+      "id": "FW_bw9jdrlQ",
+      "title": "Rice Farming: Complete Guide from Seeds to Harvest with Recent Techniques #essenceworld",
+      "author": "essence world"
+    },
+    "pest": {
+      "id": "kKnycUEaFKo",
+      "title": "RICE Insect-Pest and their management with insect image",
+      "author": "AGRI SIDE KICK"
+    }
+  },
+  "maize": {
+    "cultivation": {
+      "id": "nfMLKP1nXK0",
+      "title": "Corn Farming / Maize Cultivation | Step by Step Method | Makka Farming Complete Guide",
+      "author": "Discover Agriculture"
+    },
+    "pest": {
+      "id": "j1ZDiWZaRLk",
+      "title": "Maize Insect Pest Management | IIMR Guidelines #Maize #Insect #Crop #IPM",
+      "author": "AGRIMENTORS CHANDIGARH"
+    }
+  },
+  "chickpea": {
+    "cultivation": {
+      "id": "dwCuhJDtWto",
+      "title": "CHICKPEA CULTIVATION|| For Bsc AFO BHU NABARD JRF IFS FCI",
+      "author": "Simran Choudhary"
+    },
+    "pest": {
+      "id": "5w3buOFz-P4",
+      "title": "REDGRAM & CHICKPEA PESTS & MANAGEMENT L-35 • Go For Agriculture #redgrampests #icar #bhu #ibps",
+      "author": "Go For Agriculture Education"
+    }
+  },
+  "kidneybeans": {
+    "cultivation": {
+      "id": "sxS9ad32f4M",
+      "title": "Rajma ki kheti | Kidney bean Farming | Rajma variety | Rajma Plant | kidney bean cultivation | Rajma",
+      "author": "ABC INDIA"
+    },
+    "pest": {
+      "id": "-c6OuXMSWeE",
+      "title": "L15: Sustainable Agriculture-Integrated Pest Management |Pest Intervention Methods| Kinjal Choudhary",
+      "author": "Pathfinder by Unacademy"
+    }
+  },
+  "pigeonpeas": {
+    "cultivation": {
+      "id": "2o885DOsHoc",
+      "title": "Cultivation of Pigeon Pea| अरहर की खेती| By Dr. P K Sir #agta #agriculture #education #pigeonpea",
+      "author": "Agriwill Agriculture Academy"
+    },
+    "pest": {
+      "id": "OjOEBTM2nkk",
+      "title": "Pest and Disease Management of Short duration Pigeonpea",
+      "author": "IARI, Pusa, New Delhi, Official"
+    }
+  },
+  "mothbeans": {
+    "cultivation": {
+      "id": "9hPYAMDq9_I",
+      "title": "SCUM Gardening Guide 🌱How to Farm, Plant Seeds & Grow Food (Full Tutorial)",
+      "author": "MISS_ROFL"
+    },
+    "pest": {
+      "id": "x2rtfu65wdY",
+      "title": "Preventive Methods for Insect,  Pest and Disease Management in Organic Farming",
+      "author": "Amit Bhatnagar Classes"
+    }
+  },
+  "mungbean": {
+    "cultivation": {
+      "id": "khDRGv3kaFo",
+      "title": "Mungbean (Moong) + Urdbean (Urd) Cultivation in Hindi | Complete Package of Practices | ICAR | AFO",
+      "author": "Agriculture RS Rajput"
+    },
+    "pest": {
+      "id": "zrLTzv_k5so",
+      "title": "Sampling insect pests in mungbeans",
+      "author": "TheBeatsheet"
+    }
+  },
+  "blackgram": {
+    "cultivation": {
+      "id": "POFfCxC-dA4",
+      "title": "Black Gram (Urd) Cultivation | उड़द की खेती |Animated Crop Production| Episode 12 | FAC| ICAR| BHU",
+      "author": "Foundation Agri Classes"
+    },
+    "pest": {
+      "id": "Yoc-OtyoOyY",
+      "title": "మినుములో చీడ‌పీడ‌ల నివార‌ణ‌ | Pest & Disease Management in Black Gram | Matti Manishi | 10TV News",
+      "author": "10TV News Telugu"
+    }
+  },
+  "lentil": {
+    "cultivation": {
+      "id": "I8pMX1nI7ME",
+      "title": "Lentil (Masoor) Cultivation | Full Package of Practices | One Shot Revision | ICAR/IBPS AFO/ARS",
+      "author": "Agriculture RS Rajput"
+    },
+    "pest": {
+      "id": "9bxjETFAI_s",
+      "title": "Diseases of Lentil | मसूर | Wilt and Rust",
+      "author": "Doctor Agriculture"
+    }
+  },
+  "pomegranate": {
+    "cultivation": {
+      "id": "O-9eG_KbP4c",
+      "title": "HOW to PLANT and GROW POMEGRANATES, plus WHEN to HARVEST, HOW to EAT, and what to do about BUGS",
+      "author": "Growing In The Garden"
+    },
+    "pest": {
+      "id": "cCyKdURiyHY",
+      "title": "Pest Management of Pomegranate | Major Pests, Symptoms & Control | B.Sc. Agriculture",
+      "author": "Bscagrisimplified "
+    }
+  },
+  "banana": {
+    "cultivation": {
+      "id": "eJh402oBn4g",
+      "title": "Banana farming in extreme weather | Tips by Jai Singh an award winning #bananafarmer | केला की खेती",
+      "author": "News Potli"
+    },
+    "pest": {
+      "id": "Mb-GMO_nut4",
+      "title": "L 24 | Diseases of Banana | केले में लगने वाले रोग और उनका समाधान @doctor.agriculture",
+      "author": "Doctor Agriculture"
+    }
+  },
+  "mango": {
+    "cultivation": {
+      "id": "0iAZa5bHQj0",
+      "title": "Mango Farming (Guide for Beginners) | Mango Cultivation",
+      "author": "Discover Agriculture"
+    },
+    "pest": {
+      "id": "RoyZIBU118A",
+      "title": "आम में गुच्छा रोग (Malformation) का 100% समाधान! | Mango Malformation Control | बंपर उत्पादन उपाय",
+      "author": "Katyayani Organics"
+    }
+  },
+  "grapes": {
+    "cultivation": {
+      "id": "8Ik7b6UcDP8",
+      "title": "How to Grow Grapes, Complete Growing Guide",
+      "author": "The Gardening Channel With James Prigioni"
+    },
+    "pest": {
+      "id": "nhYOm9QIb_Y",
+      "title": "Diseases of Grapes | अंगूर की बीमारियां | Identification and Management  | Mildew, Anthracnose",
+      "author": "Doctor Agriculture"
+    }
+  },
+  "watermelon": {
+    "cultivation": {
+      "id": "YbCxVzvgMQs",
+      "title": "Watermelon Farming की A to Z जानकारी 🍉🚜 Fruit Farming Profit 2026💰 Indian Farmer",
+      "author": "Indian Farmer"
+    },
+    "pest": {
+      "id": "iwqGxLTZR6M",
+      "title": "How to Identify and Control Watermelon Pests & Diseases | Step-by-Step Guide",
+      "author": "Cultivate Uganda"
+    }
+  },
+  "muskmelon": {
+    "cultivation": {
+      "id": "bKcMxJhxGyQ",
+      "title": "Muskmelon Farming Complete Guide 2026 | खरबूज की खेती कैसे करें | बीज से तुड़ाई तक पूरी जानकारी। ",
+      "author": "Krishi Sandarbh 🌾"
+    },
+    "pest": {
+      "id": "prxAkNvQiR0",
+      "title": "muskmelon insect pest management/खरबूज की फसल में कीट नियंत्रण/control of fruit fly",
+      "author": "C2C FARMING"
+    }
+  },
+  "apple": {
+    "cultivation": {
+      "id": "2zHe2mvdUU8",
+      "title": "How to Grow Apple Trees, Complete Growing Guide",
+      "author": "The Gardening Channel With James Prigioni"
+    },
+    "pest": {
+      "id": "1fk4lOewgtg",
+      "title": "Apple growers ke liye IPDM 🌿 Janiye effective pest aur disease management tips.🍎✨",
+      "author": "Jittu Chauhan Orchardist"
+    }
+  },
+  "orange": {
+    "cultivation": {
+      "id": "kU7Cr7-CU6o",
+      "title": "Orange Cultivation: Planting to Harvest | Complete Guide for Beginners",
+      "author": "Discover Agriculture"
+    },
+    "pest": {
+      "id": "ioHJj6DdMjU",
+      "title": "CITRUS CROP: DISEASES AND THEIR MANAGEMENT | IBPS-AFO, ICAR-JRF, ADO, AAO, BHU, NABARD, IFFCO",
+      "author": "krishi valley"
+    }
+  },
+  "papaya": {
+    "cultivation": {
+      "id": "9wqmSDElQgU",
+      "title": "Papaya Farming Complete Guide 2026 | Seed to Harvest & Selling | Full Papaya Cultivation in Pakistan",
+      "author": "Subhan Agri vlogs"
+    },
+    "pest": {
+      "id": "Aj92ahBq6TU",
+      "title": "Papaya Disease Management",
+      "author": "IARI, Pusa, New Delhi, Official"
+    }
+  },
+  "coconut": {
+    "cultivation": {
+      "id": "GjSGdqT3DME",
+      "title": "Coconut Farming - Complete Step by Step Cultivation Guide",
+      "author": "Discover Agriculture"
+    },
+    "pest": {
+      "id": "zYUhClkzxQU",
+      "title": "How to identify and control pest in coconut|MANAGEMENT|PestXpert: EPISODE 1| #coconut #pestcontrol",
+      "author": "Agri Thane Ellame"
+    }
+  },
+  "cotton": {
+    "cultivation": {
+      "id": "eN-TqqBQOAk",
+      "title": "Cotton Farming Guide | How to grow Cotton plant at Home | Cotton Cultivation",
+      "author": "Discover Agriculture"
+    },
+    "pest": {
+      "id": "Ya4OnkGr9D0",
+      "title": "Insect pest of cotton and their management by Mr. Navneet Mahant",
+      "author": "Lecture Notes"
+    }
+  },
+  "jute": {
+    "cultivation": {
+      "id": "NnON1VpmhI8",
+      "title": "Jute Crop Complete Package of Practices | ICAR, AFO, ADA, RAEO, SADO Exam | Agriculture RS Rajput",
+      "author": "Agriculture RS Rajput"
+    },
+    "pest": {
+      "id": "CrrzLCjIx4c",
+      "title": "Insect pest of Jute ll  pest of fiber crops",
+      "author": "Victoria Naorem"
+    }
+  },
+  "coffee": {
+    "cultivation": {
+      "id": "K2oD9emq_pY",
+      "title": "A Guide to Planting 1 Acre of Coffee",
+      "author": "Emense Coffee"
+    },
+    "pest": {
+      "id": "oPE-U_AySHI",
+      "title": "Pest and Disease Management - Step 7",
+      "author": "NUCAFE Uganda"
+    }
+  }
+}
