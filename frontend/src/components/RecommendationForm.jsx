@@ -273,7 +273,7 @@ export default function RecommendationForm({
           <div className="flex flex-col gap-6">
             {/* Row 1: Farmer + Title side by side */}
             <div className="flex flex-row items-start gap-4">
-              <div className="flex-shrink-0 hidden sm:block">
+              <div className="flex-shrink-0">
                 <FarmerCharacter 
                   character="ramesh"
                   size="sm"
