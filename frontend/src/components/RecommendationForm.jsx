@@ -272,7 +272,7 @@ export default function RecommendationForm({
         <div className="bg-white dark:bg-forest-900/90 rounded-3xl p-6 sm:p-8 border border-agri-100 dark:border-forest-800 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex flex-col gap-6">
             {/* Row 1: Farmer + Title side by side */}
-            <div className="flex flex-row items-start gap-4">
+            <div className="flex flex-col sm:flex-row items-start gap-4">
               <div className="flex-shrink-0">
                 <FarmerCharacter 
                   character="ramesh"
