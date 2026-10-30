@@ -8,8 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
+# dist is tracked so Render serves the pre-compiled UI without needing Node.js installed
+# dist
+# dist-ssr
 *.local
 
 # Editor directories and files
