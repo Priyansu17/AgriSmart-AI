@@ -1,4 +1,4 @@
-"""
+﻿"""
 AgriSmart AI - Intelligent Crop Recommendation System
 Flask Backend API connected to the trained Keras Neural Network.
 """
@@ -56,7 +56,7 @@ BOUNDS = {
     'N': {'min': 0, 'max': 300, 'unit': 'kg/ha', 'name': 'Nitrogen'},
     'P': {'min': 0, 'max': 300, 'unit': 'kg/ha', 'name': 'Phosphorus'},
     'K': {'min': 0, 'max': 350, 'unit': 'kg/ha', 'name': 'Potassium'},
-    'temperature': {'min': -10.0, 'max': 60.0, 'unit': '°C', 'name': 'Temperature'},
+    'temperature': {'min': -10.0, 'max': 60.0, 'unit': 'Â°C', 'name': 'Temperature'},
     'humidity': {'min': 0.0, 'max': 100.0, 'unit': '%', 'name': 'Relative Humidity'},
     'ph': {'min': 1.0, 'max': 14.0, 'unit': 'pH scale (1-14)', 'name': 'Soil pH'},
     'rainfall': {'min': 0.0, 'max': 1000.0, 'unit': 'mm', 'name': 'Rainfall'}
@@ -143,7 +143,7 @@ CROP_KNOWLEDGE = {
         "harvestTime": "60 - 75 days",
         "soilType": "Well-drained loamy to sandy loam soils",
         "waterNeed": "Low to moderate (40 - 65 mm)",
-        "climate": "Warm and humid tropical climate (25°C - 35°C)",
+        "climate": "Warm and humid tropical climate (25Â°C - 35Â°C)",
         "description": "Short-duration, easily digestible pulse that fits effortlessly between major cropping windows in crop rotations.",
         "farmerTips": "Harvest promptly when 80% of pods turn dark brown/black to avoid field pod shattering.",
         "npkProfile": "Low Nitrogen requirement; responds readily to bio-fertilizer Rhizobium seed inoculation."
@@ -227,7 +227,7 @@ CROP_KNOWLEDGE = {
         "harvestTime": "80 - 100 days",
         "soilType": "Warm, sandy loam, sandy riverbed alluvium with high aeration",
         "waterNeed": "Moderate (40 - 60 mm); needs steady moisture until fruit ripening",
-        "climate": "Hot, dry sunny climate (24°C - 35°C) with long daylight hours",
+        "climate": "Hot, dry sunny climate (24Â°C - 35Â°C) with long daylight hours",
         "description": "Refreshing summer fruit with high lycopene and water content, ideally suited for sandy soil beds and river basins.",
         "farmerTips": "Reduce irrigation significantly 10-14 days before harvest to concentrate natural sugars (Brix content).",
         "npkProfile": "Requires high Potassium for sweet, crisp flesh and firm rind development."
@@ -251,7 +251,7 @@ CROP_KNOWLEDGE = {
         "harvestTime": "3-5 years to first crop; 130-150 days from petal fall",
         "soilType": "Deep, well-drained loamy soil rich in organic matter (pH 5.5 - 6.5)",
         "waterNeed": "Moderate (100 - 125 mm annual rainfall / regular mountain showers)",
-        "climate": "Temperate hill climate with 800 - 1200 winter chilling hours below 7°C",
+        "climate": "Temperate hill climate with 800 - 1200 winter chilling hours below 7Â°C",
         "description": "Premier temperate commercial tree fruit requiring cool elevations, well-aerated hillside terrain, and chilling hours.",
         "farmerTips": "Plant appropriate pollinizer tree varieties (such as Crabapple or Golden Delicious) at a 1:4 ratio for successful fruit set.",
         "npkProfile": "Balanced NPK regimen with periodic Calcium foliar sprays to prevent bitter pit disorder."
@@ -275,7 +275,7 @@ CROP_KNOWLEDGE = {
         "harvestTime": "9 - 11 months from transplanting",
         "soilType": "Rich, well-drained sandy loam or alluvial soil (extremely sensitive to stagnant water)",
         "waterNeed": "Moderate to high (140 - 220 mm)",
-        "climate": "Warm, humid tropical climate (22°C - 35°C); killed by freezing frost",
+        "climate": "Warm, humid tropical climate (22Â°C - 35Â°C); killed by freezing frost",
         "description": "Fast-growing, highly remunerative herbaceous plant producing luscious, enzyme-rich (papain) fruits within a year.",
         "farmerTips": "Water stagnation for even 24-48 hours causes collar rot and fatal plant death. Plant on raised mounds.",
         "npkProfile": "Heavy feeder; requires monthly small doses of balanced NPK."
@@ -323,7 +323,7 @@ CROP_KNOWLEDGE = {
         "harvestTime": "3-4 years to first harvest; 8-9 months from blossom to ripe cherry",
         "soilType": "Deep, porous, virgin forest loam rich in humus and organic litter (pH 6.0 - 6.8)",
         "waterNeed": "High (130 - 180 mm annual distribution with a dry blossom shower period)",
-        "climate": "Mild, humid tropical hill climate (15°C - 28°C) grown under a two-tier shade canopy",
+        "climate": "Mild, humid tropical hill climate (15Â°C - 28Â°C) grown under a two-tier shade canopy",
         "description": "World's most cherished aromatic plantation beverage crop, thriving under cool, filtered shade on tropical highland slopes.",
         "farmerTips": "Provide uniform shade trees (such as Silver Oak and Albizia) to buffer leaf scorching and temperature swings.",
         "npkProfile": "High Potassium for bean filling and density; moderate split Nitrogen applications."
@@ -448,8 +448,14 @@ try:
                 if 'Test Loss:' in line:
                     model_metrics['test_loss'] = float(line.split(':')[1].strip())
                 elif 'Test Accuracy:' in line:
-                    model_metrics['test_accuracy'] = round(float(line.split(':')[1].strip()) * 100, 2)
-                    model_metrics['accuracy_decimal'] = float(line.split(':')[1].strip())
+                    raw_acc = line.split(':')[1].strip().replace('%', '')
+                    acc_val = float(raw_acc)
+                    if acc_val <= 1.0:
+                        model_metrics['test_accuracy'] = round(acc_val * 100, 2)
+                        model_metrics['accuracy_decimal'] = acc_val
+                    else:
+                        model_metrics['test_accuracy'] = round(acc_val, 2)
+                        model_metrics['accuracy_decimal'] = round(acc_val / 100, 4)
 except Exception as e:
     print(f"Warning: Could not read metrics file: {e}")
 
@@ -698,13 +704,13 @@ def extract_parameters_from_text(text):
     import re
     params = {}
     
-    n_match = re.search(r'\b(?:N|nitrogen|नत्रजन|नाइट्रोजन)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
-    p_match = re.search(r'\b(?:P|phosphorus|फास्फोरस)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
-    k_match = re.search(r'\b(?:K|potassium|potash|पोटाश)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
-    temp_match = re.search(r'\b(?:temp(?:erature)?|तापमान)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
-    hum_match = re.search(r'\b(?:hum(?:idity)?|आर्द्रता|नमी)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
-    ph_match = re.search(r'\b(?:ph|पीएच)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
-    rain_match = re.search(r'\b(?:rain(?:fall)?|वर्षा|बारिश)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
+    n_match = re.search(r'\b(?:N|nitrogen|à¤¨à¤¤à¥à¤°à¤œà¤¨|à¤¨à¤¾à¤‡à¤Ÿà¥à¤°à¥‹à¤œà¤¨)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
+    p_match = re.search(r'\b(?:P|phosphorus|à¤«à¤¾à¤¸à¥à¤«à¥‹à¤°à¤¸)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
+    k_match = re.search(r'\b(?:K|potassium|potash|à¤ªà¥‹à¤Ÿà¤¾à¤¶)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
+    temp_match = re.search(r'\b(?:temp(?:erature)?|à¤¤à¤¾à¤ªà¤®à¤¾à¤¨)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
+    hum_match = re.search(r'\b(?:hum(?:idity)?|à¤†à¤°à¥à¤¦à¥à¤°à¤¤à¤¾|à¤¨à¤®à¥€)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
+    ph_match = re.search(r'\b(?:ph|à¤ªà¥€à¤à¤š)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
+    rain_match = re.search(r'\b(?:rain(?:fall)?|à¤µà¤°à¥à¤·à¤¾|à¤¬à¤¾à¤°à¤¿à¤¶)\s*[:=]?\s*(\d+(?:\.\d+)?)', text, re.I)
 
     if n_match: params['N'] = float(n_match.group(1))
     if p_match: params['P'] = float(p_match.group(1))
@@ -869,13 +875,13 @@ def call_gemini_llm(user_msg, language='en', history=None, custom_api_key=None):
                             if crop in combined_lower:
                                 actions.append({
                                     'type': 'load_crop_sample',
-                                    'label': f"🌾 Fill {crop.capitalize()} Sample",
+                                    'label': f"ðŸŒ¾ Fill {crop.capitalize()} Sample",
                                     'crop': crop
                                 })
                                 break
 
                         if any(w in combined_lower for w in ['weather', 'mausam', 'barish', 'rainfall', 'temperature']):
-                            actions.append({'type': 'trigger_weather_detect', 'label': '📍 Detect Local Weather', 'payload': True})
+                            actions.append({'type': 'trigger_weather_detect', 'label': 'ðŸ“ Detect Local Weather', 'payload': True})
 
                         result = {
                             'text': bot_text,
@@ -944,7 +950,7 @@ def chat_endpoint():
 
     if not user_msg:
         return jsonify({
-            'text': "Namaste! I'm AgriBot 🌾. How can I assist your farm today?",
+            'text': "Namaste! I'm AgriBot ðŸŒ¾. How can I assist your farm today?",
             'tags': ['AgriBot'],
             'actions': []
         }), 200
@@ -981,13 +987,13 @@ def chat_endpoint():
             crop_meta = CROP_KNOWLEDGE.get(predicted_crop, {})
 
             reply = (
-                f"🎯 **Instant AI Prediction from your Soil Parameters:**\n\n"
-                f"• **Recommended Primary Crop:** **{crop_meta.get('displayName', predicted_crop.capitalize())}**\n"
-                f"• **Statistical Model Confidence:** **{conf}%**\n"
-                f"• **Top 3 Candidate Crops:** {', '.join(top_3)}\n"
-                f"• **Key Agronomic Profile:** {crop_meta.get('description', '')}\n"
-                f"• **Harvest Duration:** {crop_meta.get('harvestTime', 'N/A')} | **Water Requirement:** {crop_meta.get('waterNeed', 'N/A')}\n\n"
-                f"💡 *Would you like to load these parameters into the main form and run a full economic breakdown?*"
+                f"ðŸŽ¯ **Instant AI Prediction from your Soil Parameters:**\n\n"
+                f"â€¢ **Recommended Primary Crop:** **{crop_meta.get('displayName', predicted_crop.capitalize())}**\n"
+                f"â€¢ **Statistical Model Confidence:** **{conf}%**\n"
+                f"â€¢ **Top 3 Candidate Crops:** {', '.join(top_3)}\n"
+                f"â€¢ **Key Agronomic Profile:** {crop_meta.get('description', '')}\n"
+                f"â€¢ **Harvest Duration:** {crop_meta.get('harvestTime', 'N/A')} | **Water Requirement:** {crop_meta.get('waterNeed', 'N/A')}\n\n"
+                f"ðŸ’¡ *Would you like to load these parameters into the main form and run a full economic breakdown?*"
             )
             return jsonify({
                 'text': reply,
@@ -995,12 +1001,12 @@ def chat_endpoint():
                 'actions': [
                     {
                         'type': 'load_parameters',
-                        'label': f"🌾 Fill Form with these {len(extracted_params)} Values",
+                        'label': f"ðŸŒ¾ Fill Form with these {len(extracted_params)} Values",
                         'payload': eval_features
                     },
                     {
                         'type': 'navigate_tab',
-                        'label': '📊 View Crop Economics',
+                        'label': 'ðŸ“Š View Crop Economics',
                         'payload': 'analytics'
                     }
                 ]
@@ -1018,173 +1024,173 @@ def chat_endpoint():
     # 3a. Pest & Disease Diagnostics
     pest_disease_keywords = [
         'pest', 'disease', 'insect', 'fungus', 'bollworm', 'blast', 'rust', 'armyworm', 
-        'aphid', 'whitefly', 'blight', 'termite', 'wilt', 'mildew', 'कीड़ा', 'रोग', 'सुंडी', 'दीमक', 'फफूंद', 'ब्लास्ट'
+        'aphid', 'whitefly', 'blight', 'termite', 'wilt', 'mildew', 'à¤•à¥€à¤¡à¤¼à¤¾', 'à¤°à¥‹à¤—', 'à¤¸à¥à¤‚à¤¡à¥€', 'à¤¦à¥€à¤®à¤•', 'à¤«à¤«à¥‚à¤‚à¤¦', 'à¤¬à¥à¤²à¤¾à¤¸à¥à¤Ÿ'
     ]
     if any(k in query for k in pest_disease_keywords):
-        if 'cotton' in query or 'bollworm' in query or 'कपास' in query:
+        if 'cotton' in query or 'bollworm' in query or 'à¤•à¤ªà¤¾à¤¸' in query:
             return jsonify({
                 'text': (
-                    "🐛 **Cotton Pest Diagnostic: Pink Bollworm (गुलाबी सुंडी)**\n\n"
-                    "• **Symptoms:** Rosetted flowers, small exit holes on developing bolls, stained lint, premature boll dropping.\n"
-                    "• **Chemical Control:** Spray **Emamectin Benzoate 5% SG** @ 0.5 g/L or **Chlorantraniliprole 18.5% SC** @ 0.3 ml/L.\n"
-                    "• **Organic / Biological Control:** Install **Pheromone Traps** (5-8 traps/acre) with Gossyplure lures. Spray **Neem Oil 1500 ppm** @ 3 ml/L during squaring stage.\n"
-                    "• **Preventive Measure:** Avoid cultivating ratoon cotton; destroy crop residues after final picking."
+                    "ðŸ› **Cotton Pest Diagnostic: Pink Bollworm (à¤—à¥à¤²à¤¾à¤¬à¥€ à¤¸à¥à¤‚à¤¡à¥€)**\n\n"
+                    "â€¢ **Symptoms:** Rosetted flowers, small exit holes on developing bolls, stained lint, premature boll dropping.\n"
+                    "â€¢ **Chemical Control:** Spray **Emamectin Benzoate 5% SG** @ 0.5 g/L or **Chlorantraniliprole 18.5% SC** @ 0.3 ml/L.\n"
+                    "â€¢ **Organic / Biological Control:** Install **Pheromone Traps** (5-8 traps/acre) with Gossyplure lures. Spray **Neem Oil 1500 ppm** @ 3 ml/L during squaring stage.\n"
+                    "â€¢ **Preventive Measure:** Avoid cultivating ratoon cotton; destroy crop residues after final picking."
                 ),
                 'tags': ['Pest Control', 'Cotton', 'Pink Bollworm'],
-                'actions': [{'type': 'load_crop_sample', 'label': '🌾 View Cotton Profile', 'crop': 'cotton'}]
+                'actions': [{'type': 'load_crop_sample', 'label': 'ðŸŒ¾ View Cotton Profile', 'crop': 'cotton'}]
             }), 200
 
-        if 'rice' in query or 'blast' in query or 'धान' in query or 'ब्लास्ट' in query:
+        if 'rice' in query or 'blast' in query or 'à¤§à¤¾à¤¨' in query or 'à¤¬à¥à¤²à¤¾à¤¸à¥à¤Ÿ' in query:
             return jsonify({
                 'text': (
-                    "🍄 **Rice Disease Diagnostic: Blast Disease (धान का ब्लास्ट / झुलसा)**\n\n"
-                    "• **Symptoms:** Spindle-shaped lesions with grey centers and brownish-red margins on leaves and neck rot at panicle emergence.\n"
-                    "• **Chemical Remedy:** Spray **Tricyclazole 75% WP** @ 0.6 g/L or **Isoprothiolane 40% EC** @ 1.5 ml/L.\n"
-                    "• **Organic Measure:** Spray **Pseudomonas fluorescens** @ 5 g/L or fermented buttermilk spray (खट्टी छाछ).\n"
-                    "• **Agronomic Advice:** Avoid excessive basal nitrogen dosing in humid weather as excess vegetative nitrogen accelerates blast spore germination."
+                    "ðŸ„ **Rice Disease Diagnostic: Blast Disease (à¤§à¤¾à¤¨ à¤•à¤¾ à¤¬à¥à¤²à¤¾à¤¸à¥à¤Ÿ / à¤à¥à¤²à¤¸à¤¾)**\n\n"
+                    "â€¢ **Symptoms:** Spindle-shaped lesions with grey centers and brownish-red margins on leaves and neck rot at panicle emergence.\n"
+                    "â€¢ **Chemical Remedy:** Spray **Tricyclazole 75% WP** @ 0.6 g/L or **Isoprothiolane 40% EC** @ 1.5 ml/L.\n"
+                    "â€¢ **Organic Measure:** Spray **Pseudomonas fluorescens** @ 5 g/L or fermented buttermilk spray (à¤–à¤Ÿà¥à¤Ÿà¥€ à¤›à¤¾à¤›).\n"
+                    "â€¢ **Agronomic Advice:** Avoid excessive basal nitrogen dosing in humid weather as excess vegetative nitrogen accelerates blast spore germination."
                 ),
                 'tags': ['Rice Blast', 'Fungicide', 'Crop Health'],
-                'actions': [{'type': 'load_crop_sample', 'label': '🌾 View Rice Profile', 'crop': 'rice'}]
+                'actions': [{'type': 'load_crop_sample', 'label': 'ðŸŒ¾ View Rice Profile', 'crop': 'rice'}]
             }), 200
 
-        if 'rust' in query or 'wheat' in query or 'गेहूं' in query or 'रतुआ' in query:
+        if 'rust' in query or 'wheat' in query or 'à¤—à¥‡à¤¹à¥‚à¤‚' in query or 'à¤°à¤¤à¥à¤†' in query:
             return jsonify({
                 'text': (
-                    "🌾 **Wheat Disease Diagnostic: Yellow / Stripe Rust (पीला रतुआ)**\n\n"
-                    "• **Symptoms:** Yellow pustules arranged in linear stripes along the leaf blades, yellow powdery dust on fingers when touched.\n"
-                    "• **Chemical Remedy:** Immediate foliar spray of **Propiconazole 25% EC (Tilt)** @ 1.0 ml/L or **Tebuconazole 25.9% EC** @ 1.2 ml/L.\n"
-                    "• **Preventive Action:** Grow rust-resistant varieties (HD-2967, PBW-550, DBW-187). Inspect northern border rows weekly during cold foggy January days."
+                    "ðŸŒ¾ **Wheat Disease Diagnostic: Yellow / Stripe Rust (à¤ªà¥€à¤²à¤¾ à¤°à¤¤à¥à¤†)**\n\n"
+                    "â€¢ **Symptoms:** Yellow pustules arranged in linear stripes along the leaf blades, yellow powdery dust on fingers when touched.\n"
+                    "â€¢ **Chemical Remedy:** Immediate foliar spray of **Propiconazole 25% EC (Tilt)** @ 1.0 ml/L or **Tebuconazole 25.9% EC** @ 1.2 ml/L.\n"
+                    "â€¢ **Preventive Action:** Grow rust-resistant varieties (HD-2967, PBW-550, DBW-187). Inspect northern border rows weekly during cold foggy January days."
                 ),
                 'tags': ['Wheat Rust', 'Fungal Control', 'Rabi Crop'],
-                'actions': [{'type': 'load_crop_sample', 'label': '🌾 View Wheat Profile', 'crop': 'wheat'}]
+                'actions': [{'type': 'load_crop_sample', 'label': 'ðŸŒ¾ View Wheat Profile', 'crop': 'wheat'}]
             }), 200
 
-        if 'maize' in query or 'armyworm' in query or 'मक्का' in query:
+        if 'maize' in query or 'armyworm' in query or 'à¤®à¤•à¥à¤•à¤¾' in query:
             return jsonify({
                 'text': (
-                    "🌽 **Maize Pest Diagnostic: Fall Armyworm (Spodoptera frugiperda)**\n\n"
-                    "• **Symptoms:** Pinholes and large ragged feeding holes in whorl leaves with abundant sawdust-like frass.\n"
-                    "• **Chemical Control:** Spray **Chlorantraniliprole 18.5% SC** @ 0.4 ml/L or **Spinetoram 11.7% SC** @ 0.5 ml/L directed into the central whorl.\n"
-                    "• **Biological Control:** Apply **Beauveria bassiana** or **Metarhizium anisopliae** @ 5 g/L; release Trichogramma egg parasitoids.\n"
-                    "• **Whorl Sand Technique:** Apply dry sand or ash mixed with 10% lime inside the whorl to mechanically suffocate early larvae."
+                    "ðŸŒ½ **Maize Pest Diagnostic: Fall Armyworm (Spodoptera frugiperda)**\n\n"
+                    "â€¢ **Symptoms:** Pinholes and large ragged feeding holes in whorl leaves with abundant sawdust-like frass.\n"
+                    "â€¢ **Chemical Control:** Spray **Chlorantraniliprole 18.5% SC** @ 0.4 ml/L or **Spinetoram 11.7% SC** @ 0.5 ml/L directed into the central whorl.\n"
+                    "â€¢ **Biological Control:** Apply **Beauveria bassiana** or **Metarhizium anisopliae** @ 5 g/L; release Trichogramma egg parasitoids.\n"
+                    "â€¢ **Whorl Sand Technique:** Apply dry sand or ash mixed with 10% lime inside the whorl to mechanically suffocate early larvae."
                 ),
                 'tags': ['Fall Armyworm', 'Maize Pest', 'IPM'],
-                'actions': [{'type': 'load_crop_sample', 'label': '🌽 View Maize Profile', 'crop': 'maize'}]
+                'actions': [{'type': 'load_crop_sample', 'label': 'ðŸŒ½ View Maize Profile', 'crop': 'maize'}]
             }), 200
 
         return jsonify({
             'text': (
-                "🛡️ **Integrated Pest & Disease Management Advisory (IPM):**\n\n"
-                "• **Sap-Sucking Pests (Aphids, Jassids, Whiteflies):** Spray **Neem Oil 10,000 ppm** @ 2 ml/L or **Imidacloprid 17.8% SL** @ 0.5 ml/L. Install yellow sticky traps (15/acre).\n"
-                "• **Fungal Wilts & Root Rots:** Soil drenching with **Trichoderma viride** @ 5 kg mixed in 500 kg FYM/compost per acre during field preparation.\n"
-                "• **Termites & Soil Grubs:** Soil application of **Chlorpyrifos 20% EC** @ 1.5 L/acre with irrigation water or Chlorantraniliprole granules.\n"
-                "• **Caterpillars & Borers:** Install pheromone traps and spray Bacillus thuringiensis (Bt) @ 2 g/L.\n\n"
-                "💡 *Tell me your specific crop name (e.g., Rice, Cotton, Maize, Wheat) for targeted diagnosis!*"
+                "ðŸ›¡ï¸ **Integrated Pest & Disease Management Advisory (IPM):**\n\n"
+                "â€¢ **Sap-Sucking Pests (Aphids, Jassids, Whiteflies):** Spray **Neem Oil 10,000 ppm** @ 2 ml/L or **Imidacloprid 17.8% SL** @ 0.5 ml/L. Install yellow sticky traps (15/acre).\n"
+                "â€¢ **Fungal Wilts & Root Rots:** Soil drenching with **Trichoderma viride** @ 5 kg mixed in 500 kg FYM/compost per acre during field preparation.\n"
+                "â€¢ **Termites & Soil Grubs:** Soil application of **Chlorpyrifos 20% EC** @ 1.5 L/acre with irrigation water or Chlorantraniliprole granules.\n"
+                "â€¢ **Caterpillars & Borers:** Install pheromone traps and spray Bacillus thuringiensis (Bt) @ 2 g/L.\n\n"
+                "ðŸ’¡ *Tell me your specific crop name (e.g., Rice, Cotton, Maize, Wheat) for targeted diagnosis!*"
             ),
             'tags': ['IPM Advisory', 'Pest Control', 'Bio-Pesticides'],
             'actions': []
         }), 200
 
     # 3. Fertilizer Calculation (Urea, DAP, MOP)
-    fertilizer_keywords = ['fertilizer', 'urea', 'dap', 'mop', 'खाद', 'यूरिया', 'डीएपी', 'पोटाश', 'dose', 'बस्ता']
+    fertilizer_keywords = ['fertilizer', 'urea', 'dap', 'mop', 'à¤–à¤¾à¤¦', 'à¤¯à¥‚à¤°à¤¿à¤¯à¤¾', 'à¤¡à¥€à¤à¤ªà¥€', 'à¤ªà¥‹à¤Ÿà¤¾à¤¶', 'dose', 'à¤¬à¤¸à¥à¤¤à¤¾']
     if any(k in query for k in fertilizer_keywords):
         return jsonify({
             'text': (
-                "🧪 **Commercial Fertilizer Bag Calculation Guide (उर्वरक एवं खाद गणना):**\n\n"
+                "ðŸ§ª **Commercial Fertilizer Bag Calculation Guide (à¤‰à¤°à¥à¤µà¤°à¤• à¤à¤µà¤‚ à¤–à¤¾à¤¦ à¤—à¤£à¤¨à¤¾):**\n\n"
                 "Farmers buy commercial fertilizer bags containing standardized active ingredients:\n"
-                "• **Urea (46% N):** Contains 23 kg pure Nitrogen per 50 kg bag. **Formula:** `Required N (kg) ÷ 23 = Bags of Urea`.\n"
-                "• **DAP (18% N, 46% P₂O₅):** Contains 23 kg Phosphorus + 9 kg Nitrogen per 50 kg bag. **Formula:** `Required P (kg) ÷ 23 = Bags of DAP`.\n"
-                "• **MOP (60% K₂O):** Contains 30 kg pure Potassium per 50 kg bag. **Formula:** `Required K (kg) ÷ 30 = Bags of MOP`.\n\n"
-                "📅 **Stage-Wise Application Timeline:**\n"
-                "1. **Basal Dose (बुवाई के समय):** 100% of DAP, 100% of MOP, and 1/3rd of Urea.\n"
-                "2. **First Top Dressing (कल्ले फूटते समय / 25-30 days):** 1/3rd of Urea.\n"
-                "3. **Second Top Dressing (फूल / बाली बनते समय / 50-60 days):** Final 1/3rd of Urea."
+                "â€¢ **Urea (46% N):** Contains 23 kg pure Nitrogen per 50 kg bag. **Formula:** `Required N (kg) Ã· 23 = Bags of Urea`.\n"
+                "â€¢ **DAP (18% N, 46% Pâ‚‚Oâ‚…):** Contains 23 kg Phosphorus + 9 kg Nitrogen per 50 kg bag. **Formula:** `Required P (kg) Ã· 23 = Bags of DAP`.\n"
+                "â€¢ **MOP (60% Kâ‚‚O):** Contains 30 kg pure Potassium per 50 kg bag. **Formula:** `Required K (kg) Ã· 30 = Bags of MOP`.\n\n"
+                "ðŸ“… **Stage-Wise Application Timeline:**\n"
+                "1. **Basal Dose (à¤¬à¥à¤µà¤¾à¤ˆ à¤•à¥‡ à¤¸à¤®à¤¯):** 100% of DAP, 100% of MOP, and 1/3rd of Urea.\n"
+                "2. **First Top Dressing (à¤•à¤²à¥à¤²à¥‡ à¤«à¥‚à¤Ÿà¤¤à¥‡ à¤¸à¤®à¤¯ / 25-30 days):** 1/3rd of Urea.\n"
+                "3. **Second Top Dressing (à¤«à¥‚à¤² / à¤¬à¤¾à¤²à¥€ à¤¬à¤¨à¤¤à¥‡ à¤¸à¤®à¤¯ / 50-60 days):** Final 1/3rd of Urea."
             ),
             'tags': ['Fertilizer Bags', 'Urea & DAP', 'NPK Dosing'],
             'actions': [
-                {'type': 'navigate_tab', 'label': '📏 Open Units Guide', 'payload': 'recommend'},
-                {'type': 'navigate_tab', 'label': '📊 Check Analytics', 'payload': 'analytics'}
+                {'type': 'navigate_tab', 'label': 'ðŸ“ Open Units Guide', 'payload': 'recommend'},
+                {'type': 'navigate_tab', 'label': 'ðŸ“Š Check Analytics', 'payload': 'analytics'}
             ]
         }), 200
 
     # 4. Soil Type Recommendations (Black, Alluvial, Red, Sandy, Laterite)
-    soil_keywords = ['soil', 'black soil', 'alluvial', 'red soil', 'sandy', 'clay', 'laterite', 'काली मिट्टी', 'जलोढ़', 'लाल मिट्टी', 'बलुई']
+    soil_keywords = ['soil', 'black soil', 'alluvial', 'red soil', 'sandy', 'clay', 'laterite', 'à¤•à¤¾à¤²à¥€ à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€', 'à¤œà¤²à¥‹à¤¢à¤¼', 'à¤²à¤¾à¤² à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€', 'à¤¬à¤²à¥à¤ˆ']
     if any(k in query for k in soil_keywords):
-        if 'black' in query or 'काली' in query:
+        if 'black' in query or 'à¤•à¤¾à¤²à¥€' in query:
             return jsonify({
                 'text': (
-                    "🌱 **Best Crops for Black Soils / Regur (काली मिट्टी की फसलें):**\n\n"
-                    "• **Characteristics:** High montmorillonite clay content, excellent moisture retention, deep fertility, self-ploughing cracks in summer.\n"
-                    "• **Top Cash Crops:** **Cotton (कपास)**, **Soybean (सोयाबीन)**, **Chickpea (चना)**, **Sorghum (ज्वार)**, **Sugarcane (गन्ना)**.\n"
-                    "• **Horticulture:** Pomegranate (अनार), Grapes (अंगूर), and Mosambi (मौसमी).\n"
-                    "• **Management Tip:** Black soils have poor internal drainage. Implement Broad Bed Furrow (BBF) or ridge-and-furrow planting to prevent waterlogging during heavy monsoon rains."
+                    "ðŸŒ± **Best Crops for Black Soils / Regur (à¤•à¤¾à¤²à¥€ à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤•à¥€ à¤«à¤¸à¤²à¥‡à¤‚):**\n\n"
+                    "â€¢ **Characteristics:** High montmorillonite clay content, excellent moisture retention, deep fertility, self-ploughing cracks in summer.\n"
+                    "â€¢ **Top Cash Crops:** **Cotton (à¤•à¤ªà¤¾à¤¸)**, **Soybean (à¤¸à¥‹à¤¯à¤¾à¤¬à¥€à¤¨)**, **Chickpea (à¤šà¤¨à¤¾)**, **Sorghum (à¤œà¥à¤µà¤¾à¤°)**, **Sugarcane (à¤—à¤¨à¥à¤¨à¤¾)**.\n"
+                    "â€¢ **Horticulture:** Pomegranate (à¤…à¤¨à¤¾à¤°), Grapes (à¤…à¤‚à¤—à¥‚à¤°), and Mosambi (à¤®à¥Œà¤¸à¤®à¥€).\n"
+                    "â€¢ **Management Tip:** Black soils have poor internal drainage. Implement Broad Bed Furrow (BBF) or ridge-and-furrow planting to prevent waterlogging during heavy monsoon rains."
                 ),
                 'tags': ['Black Soil', 'Cotton', 'Regur'],
                 'actions': [
-                    {'type': 'load_crop_sample', 'label': '🌾 Test Cotton Values', 'crop': 'cotton'},
-                    {'type': 'load_crop_sample', 'label': '🌾 Test Chickpea Values', 'crop': 'chickpea'}
+                    {'type': 'load_crop_sample', 'label': 'ðŸŒ¾ Test Cotton Values', 'crop': 'cotton'},
+                    {'type': 'load_crop_sample', 'label': 'ðŸŒ¾ Test Chickpea Values', 'crop': 'chickpea'}
                 ]
             }), 200
 
-        if 'alluvial' in query or 'जलोढ़' in query or 'ganga' in query:
+        if 'alluvial' in query or 'à¤œà¤²à¥‹à¤¢à¤¼' in query or 'ganga' in query:
             return jsonify({
                 'text': (
-                    "🌾 **Best Crops for Alluvial Soils (जलोढ़ मिट्टी):**\n\n"
-                    "• **Characteristics:** Highly fertile river deposition soil (Indo-Gangetic plains), balanced loam texture, high nutrient permeability.\n"
-                    "• **Top Crops:** **Rice (धान)**, **Wheat (गेहूं)**, **Sugarcane (गन्ना)**, **Maize (मक्का)**, **Mustard (सरसों)**, **Jute (जूट)**.\n"
-                    "• **Nutrient Status:** Rich in Potassium and organic silt; generally deficient in Nitrogen and Zinc.\n"
-                    "• **Management:** Highly responsive to intensive crop rotation (e.g. Rice-Wheat-Moong) and drip or canal irrigation."
+                    "ðŸŒ¾ **Best Crops for Alluvial Soils (à¤œà¤²à¥‹à¤¢à¤¼ à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€):**\n\n"
+                    "â€¢ **Characteristics:** Highly fertile river deposition soil (Indo-Gangetic plains), balanced loam texture, high nutrient permeability.\n"
+                    "â€¢ **Top Crops:** **Rice (à¤§à¤¾à¤¨)**, **Wheat (à¤—à¥‡à¤¹à¥‚à¤‚)**, **Sugarcane (à¤—à¤¨à¥à¤¨à¤¾)**, **Maize (à¤®à¤•à¥à¤•à¤¾)**, **Mustard (à¤¸à¤°à¤¸à¥‹à¤‚)**, **Jute (à¤œà¥‚à¤Ÿ)**.\n"
+                    "â€¢ **Nutrient Status:** Rich in Potassium and organic silt; generally deficient in Nitrogen and Zinc.\n"
+                    "â€¢ **Management:** Highly responsive to intensive crop rotation (e.g. Rice-Wheat-Moong) and drip or canal irrigation."
                 ),
                 'tags': ['Alluvial Soil', 'Rice & Wheat', 'Indo-Gangetic'],
                 'actions': [
-                    {'type': 'load_crop_sample', 'label': '🌾 Test Rice Values', 'crop': 'rice'},
-                    {'type': 'load_crop_sample', 'label': '🌾 Test Maize Values', 'crop': 'maize'}
+                    {'type': 'load_crop_sample', 'label': 'ðŸŒ¾ Test Rice Values', 'crop': 'rice'},
+                    {'type': 'load_crop_sample', 'label': 'ðŸŒ¾ Test Maize Values', 'crop': 'maize'}
                 ]
             }), 200
 
-        if 'red' in query or 'लाल' in query:
+        if 'red' in query or 'à¤²à¤¾à¤²' in query:
             return jsonify({
                 'text': (
-                    "🍂 **Best Crops for Red & Laterite Soils (लाल एवं लैटेराइट मिट्टी):**\n\n"
-                    "• **Characteristics:** Iron oxide enrichment gives red coloration. Highly porous, low organic carbon, slightly acidic (pH 5.0 - 6.5).\n"
-                    "• **Top Crops:** **Groundnut (मूंगफली)**, **Pigeonpea / Tur (अरहर)**, **Ragi / Finger Millet (रागी)**, **Coffee (कॉफ़ी)**, **Coconut (नारियल)**.\n"
-                    "• **Management Tip:** Apply Agricultural Lime (चूना) @ 250 kg/acre every 3 years to correct acidity, and incorporate Farmyard Manure (FYM) to improve water retention."
+                    "ðŸ‚ **Best Crops for Red & Laterite Soils (à¤²à¤¾à¤² à¤à¤µà¤‚ à¤²à¥ˆà¤Ÿà¥‡à¤°à¤¾à¤‡à¤Ÿ à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€):**\n\n"
+                    "â€¢ **Characteristics:** Iron oxide enrichment gives red coloration. Highly porous, low organic carbon, slightly acidic (pH 5.0 - 6.5).\n"
+                    "â€¢ **Top Crops:** **Groundnut (à¤®à¥‚à¤‚à¤—à¤«à¤²à¥€)**, **Pigeonpea / Tur (à¤…à¤°à¤¹à¤°)**, **Ragi / Finger Millet (à¤°à¤¾à¤—à¥€)**, **Coffee (à¤•à¥‰à¤«à¤¼à¥€)**, **Coconut (à¤¨à¤¾à¤°à¤¿à¤¯à¤²)**.\n"
+                    "â€¢ **Management Tip:** Apply Agricultural Lime (à¤šà¥‚à¤¨à¤¾) @ 250 kg/acre every 3 years to correct acidity, and incorporate Farmyard Manure (FYM) to improve water retention."
                 ),
                 'tags': ['Red Soil', 'Millets', 'Pulses'],
-                'actions': [{'type': 'load_crop_sample', 'label': '☕ Test Coffee Values', 'crop': 'coffee'}]
+                'actions': [{'type': 'load_crop_sample', 'label': 'â˜• Test Coffee Values', 'crop': 'coffee'}]
             }), 200
 
     # 5. State / Regional Agricultural Recommendations
     state_map = {
-        'punjab': ('Punjab (पंजाब)', 'Basmati Rice, Wheat, Cotton, Sugarcane, Maize', 'Alluvial / Indo-Gangetic Loam', 'rice'),
-        'haryana': ('Haryana (हरियाणा)', 'Basmati Paddy, Wheat, Mustard, Cotton, Pearl Millet', 'Alluvial / Sandy Loam', 'rice'),
-        'maharashtra': ('Maharashtra (महाराष्ट्र)', 'Cotton, Soybean, Sugarcane, Grapes, Pomegranate, Onion', 'Deep Black / Regur Soil', 'cotton'),
-        'uttar pradesh': ('Uttar Pradesh (उत्तर प्रदेश)', 'Sugarcane, Wheat, Rice, Mustard, Potato, Pulses', 'Fertile Gangetic Alluvial', 'rice'),
-        'up': ('Uttar Pradesh (उत्तर प्रदेश)', 'Sugarcane, Wheat, Rice, Mustard, Potato, Pulses', 'Fertile Gangetic Alluvial', 'rice'),
-        'madhya pradesh': ('Madhya Pradesh (मध्य प्रदेश)', 'Soybean, Sharbati Wheat, Chickpea (चना), Lentil, Garlic', 'Malwa Deep Black Soil', 'chickpea'),
-        'mp': ('Madhya Pradesh (मध्य प्रदेश)', 'Soybean, Sharbati Wheat, Chickpea (चना), Lentil, Garlic', 'Malwa Deep Black Soil', 'chickpea'),
-        'gujarat': ('Gujarat (गुजरात)', 'Bt Cotton, Groundnut, Castor, Cumin (जीरा), Sesame, Mango', 'Black Cotton & Coastal Alluvial', 'cotton'),
-        'rajasthan': ('Rajasthan (राजस्थान)', 'Mustard, Pearl Millet (बाजरा), Mothbeans, Cluster Bean (ग्वार)', 'Sandy Arid Loam', 'mothbeans'),
-        'karnataka': ('Karnataka (कर्नाटक)', 'Maize, Ragi, Coffee, Sugarcane, Arecanut, Cotton', 'Red Loam & Laterite', 'coffee'),
-        'bengal': ('West Bengal (पश्चिम बंगाल)', 'Aman & Boro Rice, Jute, Potato, Mustard, Vegetables', 'Deltaic Silt Alluvial', 'jute'),
-        'bihar': ('Bihar (बिहार)', 'Maize, Rice, Wheat, Litchi, Pulses, Makhana', 'Middle Gangetic Alluvial', 'maize'),
-        'tamil nadu': ('Tamil Nadu (तमिलनाडु)', 'Kuruvai Paddy, Banana, Coconut, Cotton, Millets', 'Red Loam & Black Soil', 'banana'),
-        'kerala': ('Kerala (केरल)', 'Coconut, Rubber, Coffee, Black Pepper, Banana, Spices', 'Highland Laterite & Coastal Alluvial', 'coconut')
+        'punjab': ('Punjab (à¤ªà¤‚à¤œà¤¾à¤¬)', 'Basmati Rice, Wheat, Cotton, Sugarcane, Maize', 'Alluvial / Indo-Gangetic Loam', 'rice'),
+        'haryana': ('Haryana (à¤¹à¤°à¤¿à¤¯à¤¾à¤£à¤¾)', 'Basmati Paddy, Wheat, Mustard, Cotton, Pearl Millet', 'Alluvial / Sandy Loam', 'rice'),
+        'maharashtra': ('Maharashtra (à¤®à¤¹à¤¾à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°)', 'Cotton, Soybean, Sugarcane, Grapes, Pomegranate, Onion', 'Deep Black / Regur Soil', 'cotton'),
+        'uttar pradesh': ('Uttar Pradesh (à¤‰à¤¤à¥à¤¤à¤° à¤ªà¥à¤°à¤¦à¥‡à¤¶)', 'Sugarcane, Wheat, Rice, Mustard, Potato, Pulses', 'Fertile Gangetic Alluvial', 'rice'),
+        'up': ('Uttar Pradesh (à¤‰à¤¤à¥à¤¤à¤° à¤ªà¥à¤°à¤¦à¥‡à¤¶)', 'Sugarcane, Wheat, Rice, Mustard, Potato, Pulses', 'Fertile Gangetic Alluvial', 'rice'),
+        'madhya pradesh': ('Madhya Pradesh (à¤®à¤§à¥à¤¯ à¤ªà¥à¤°à¤¦à¥‡à¤¶)', 'Soybean, Sharbati Wheat, Chickpea (à¤šà¤¨à¤¾), Lentil, Garlic', 'Malwa Deep Black Soil', 'chickpea'),
+        'mp': ('Madhya Pradesh (à¤®à¤§à¥à¤¯ à¤ªà¥à¤°à¤¦à¥‡à¤¶)', 'Soybean, Sharbati Wheat, Chickpea (à¤šà¤¨à¤¾), Lentil, Garlic', 'Malwa Deep Black Soil', 'chickpea'),
+        'gujarat': ('Gujarat (à¤—à¥à¤œà¤°à¤¾à¤¤)', 'Bt Cotton, Groundnut, Castor, Cumin (à¤œà¥€à¤°à¤¾), Sesame, Mango', 'Black Cotton & Coastal Alluvial', 'cotton'),
+        'rajasthan': ('Rajasthan (à¤°à¤¾à¤œà¤¸à¥à¤¥à¤¾à¤¨)', 'Mustard, Pearl Millet (à¤¬à¤¾à¤œà¤°à¤¾), Mothbeans, Cluster Bean (à¤—à¥à¤µà¤¾à¤°)', 'Sandy Arid Loam', 'mothbeans'),
+        'karnataka': ('Karnataka (à¤•à¤°à¥à¤¨à¤¾à¤Ÿà¤•)', 'Maize, Ragi, Coffee, Sugarcane, Arecanut, Cotton', 'Red Loam & Laterite', 'coffee'),
+        'bengal': ('West Bengal (à¤ªà¤¶à¥à¤šà¤¿à¤® à¤¬à¤‚à¤—à¤¾à¤²)', 'Aman & Boro Rice, Jute, Potato, Mustard, Vegetables', 'Deltaic Silt Alluvial', 'jute'),
+        'bihar': ('Bihar (à¤¬à¤¿à¤¹à¤¾à¤°)', 'Maize, Rice, Wheat, Litchi, Pulses, Makhana', 'Middle Gangetic Alluvial', 'maize'),
+        'tamil nadu': ('Tamil Nadu (à¤¤à¤®à¤¿à¤²à¤¨à¤¾à¤¡à¥)', 'Kuruvai Paddy, Banana, Coconut, Cotton, Millets', 'Red Loam & Black Soil', 'banana'),
+        'kerala': ('Kerala (à¤•à¥‡à¤°à¤²)', 'Coconut, Rubber, Coffee, Black Pepper, Banana, Spices', 'Highland Laterite & Coastal Alluvial', 'coconut')
     }
     for state_key, (state_name, crop_list, soil_info, default_crop) in state_map.items():
         if state_key in query:
             return jsonify({
                 'text': (
-                    f"📍 **Agro-Climatic Recommendation for {state_name}:**\n\n"
-                    f"• **Major Recommended Crops:** **{crop_list}**\n"
-                    f"• **Primary Soil Profile:** {soil_info}\n"
-                    f"• **Cropping Pattern:** Intensive 2-season (Kharif + Rabi) with summer Zaid vegetables.\n"
-                    f"• **Advice:** Check our **Live Weather & Geo-Location Auto-Fill** to fetch live temperature and precipitation for your specific district!"
+                    f"ðŸ“ **Agro-Climatic Recommendation for {state_name}:**\n\n"
+                    f"â€¢ **Major Recommended Crops:** **{crop_list}**\n"
+                    f"â€¢ **Primary Soil Profile:** {soil_info}\n"
+                    f"â€¢ **Cropping Pattern:** Intensive 2-season (Kharif + Rabi) with summer Zaid vegetables.\n"
+                    f"â€¢ **Advice:** Check our **Live Weather & Geo-Location Auto-Fill** to fetch live temperature and precipitation for your specific district!"
                 ),
                 'tags': [state_name, 'Regional Guide', 'Agro-Climate'],
                 'actions': [
-                    {'type': 'load_crop_sample', 'label': f"🌾 Test {default_crop.capitalize()} Values", 'crop': default_crop},
-                    {'type': 'trigger_weather_detect', 'label': '📍 Detect Live Weather', 'payload': True}
+                    {'type': 'load_crop_sample', 'label': f"ðŸŒ¾ Test {default_crop.capitalize()} Values", 'crop': default_crop},
+                    {'type': 'trigger_weather_detect', 'label': 'ðŸ“ Detect Live Weather', 'payload': True}
                 ]
             }), 200
 
@@ -1193,39 +1199,39 @@ def chat_endpoint():
         if crop_key in query:
             return jsonify({
                 'text': (
-                    f"🌾 **Agronomic Profile for {crop_meta.get('displayName', crop_key.capitalize())}:**\n\n"
-                    f"• **Category & Sowing Season:** {crop_meta.get('category', 'Crop')} | **Season:** {crop_meta.get('season', 'Kharif/Rabi')}\n"
-                    f"• **Harvest Duration:** {crop_meta.get('harvestTime', '90-120 days')}\n"
-                    f"• **Ideal Soil:** {crop_meta.get('soilType', 'Well drained loam')}\n"
-                    f"• **Water & Rain Needs:** {crop_meta.get('waterNeed', 'Moderate')}\n"
-                    f"• **Climate & Temp:** {crop_meta.get('climate', 'Warm sunny weather')}\n"
-                    f"• **NPK Demand:** {crop_meta.get('npkProfile', 'Balanced NPK')}\n"
-                    f"• **Farmer Success Tip:** {crop_meta.get('farmerTips', '')}"
+                    f"ðŸŒ¾ **Agronomic Profile for {crop_meta.get('displayName', crop_key.capitalize())}:**\n\n"
+                    f"â€¢ **Category & Sowing Season:** {crop_meta.get('category', 'Crop')} | **Season:** {crop_meta.get('season', 'Kharif/Rabi')}\n"
+                    f"â€¢ **Harvest Duration:** {crop_meta.get('harvestTime', '90-120 days')}\n"
+                    f"â€¢ **Ideal Soil:** {crop_meta.get('soilType', 'Well drained loam')}\n"
+                    f"â€¢ **Water & Rain Needs:** {crop_meta.get('waterNeed', 'Moderate')}\n"
+                    f"â€¢ **Climate & Temp:** {crop_meta.get('climate', 'Warm sunny weather')}\n"
+                    f"â€¢ **NPK Demand:** {crop_meta.get('npkProfile', 'Balanced NPK')}\n"
+                    f"â€¢ **Farmer Success Tip:** {crop_meta.get('farmerTips', '')}"
                 ),
                 'tags': [crop_key.capitalize(), crop_meta.get('season', 'Season'), 'Agronomic Profile'],
                 'actions': [
-                    {'type': 'load_crop_sample', 'label': f"🌾 Fill Form with {crop_key.capitalize()} Values", 'crop': crop_key},
-                    {'type': 'navigate_tab', 'label': '💰 View Economic Studio', 'payload': 'analytics'}
+                    {'type': 'load_crop_sample', 'label': f"ðŸŒ¾ Fill Form with {crop_key.capitalize()} Values", 'crop': crop_key},
+                    {'type': 'navigate_tab', 'label': 'ðŸ’° View Economic Studio', 'payload': 'analytics'}
                 ]
             }), 200
 
     # 7. Organic Farming & Jeevamrut
-    organic_keywords = ['organic', 'jeevamrut', 'natural', 'जैविक', 'जीवामृत', 'केंचुआ', 'पंचगव्य', 'गोबर']
+    organic_keywords = ['organic', 'jeevamrut', 'natural', 'à¤œà¥ˆà¤µà¤¿à¤•', 'à¤œà¥€à¤µà¤¾à¤®à¥ƒà¤¤', 'à¤•à¥‡à¤‚à¤šà¥à¤†', 'à¤ªà¤‚à¤šà¤—à¤µà¥à¤¯', 'à¤—à¥‹à¤¬à¤°']
     if any(k in query for k in organic_keywords):
         return jsonify({
             'text': (
-                "🌿 **Natural & Organic Farming Guide (प्राकृतिक एवं जैविक खेती):**\n\n"
-                "• **Jeevamrut Recipe (200 Liters for 1 Acre):**\n"
-                "  1. 10 kg fresh indigenous cow dung (देशी गाय का गोबर)\n"
-                "  2. 10 liters cow urine (गोमूत्र)\n"
-                "  3. 2 kg jaggery (गुड़) & 2 kg pulse flour (बेसन)\n"
+                "ðŸŒ¿ **Natural & Organic Farming Guide (à¤ªà¥à¤°à¤¾à¤•à¥ƒà¤¤à¤¿à¤• à¤à¤µà¤‚ à¤œà¥ˆà¤µà¤¿à¤• à¤–à¥‡à¤¤à¥€):**\n\n"
+                "â€¢ **Jeevamrut Recipe (200 Liters for 1 Acre):**\n"
+                "  1. 10 kg fresh indigenous cow dung (à¤¦à¥‡à¤¶à¥€ à¤—à¤¾à¤¯ à¤•à¤¾ à¤—à¥‹à¤¬à¤°)\n"
+                "  2. 10 liters cow urine (à¤—à¥‹à¤®à¥‚à¤¤à¥à¤°)\n"
+                "  3. 2 kg jaggery (à¤—à¥à¤¡à¤¼) & 2 kg pulse flour (à¤¬à¥‡à¤¸à¤¨)\n"
                 "  4. Handful of virgin soil from under a banyan/neem tree.\n"
                 "  5. Mix in 200 L water, ferment in shade for 48 hours stirring clockwise twice daily. Apply via flood or drip irrigation.\n"
-                "• **Beejamrut (बीजामृत):** Natural seed treatment using cow urine, lime, and cow dung to prevent seed-borne fungal infections.\n"
-                "• **Green Manuring:** Sow **Dhaincha (Sesbania)** or **Sunn hemp** and incorporate into the soil with a rotavator at 45 days before paddy transplanting. Adds 25-35 kg natural Nitrogen per acre!"
+                "â€¢ **Beejamrut (à¤¬à¥€à¤œà¤¾à¤®à¥ƒà¤¤):** Natural seed treatment using cow urine, lime, and cow dung to prevent seed-borne fungal infections.\n"
+                "â€¢ **Green Manuring:** Sow **Dhaincha (Sesbania)** or **Sunn hemp** and incorporate into the soil with a rotavator at 45 days before paddy transplanting. Adds 25-35 kg natural Nitrogen per acre!"
             ),
             'tags': ['Organic Farming', 'Jeevamrut', 'Natural Agriculture'],
-            'actions': [{'type': 'navigate_tab', 'label': '🧪 Explore Soil Health', 'payload': 'recommend'}]
+            'actions': [{'type': 'navigate_tab', 'label': 'ðŸ§ª Explore Soil Health', 'payload': 'recommend'}]
         }), 200
 
     # 8a. Kaise ho / Well-being / How are you
@@ -1233,18 +1239,18 @@ def chat_endpoint():
     if any(k in query for k in wellbeing_triggers):
         return jsonify({
             'text': (
-                "**Namaste! Main bilkul badhiya hoon! (मैं बिल्कुल बढ़िया हूँ) 🌾**\n\n"
+                "**Namaste! Main bilkul badhiya hoon! (à¤®à¥ˆà¤‚ à¤¬à¤¿à¤²à¥à¤•à¥à¤² à¤¬à¤¢à¤¼à¤¿à¤¯à¤¾ à¤¹à¥‚à¤) ðŸŒ¾**\n\n"
                 "Aapki kheti, mitti ki jaanch (soil test) aur fasal ki behtareen paidawar ke liye hamesha hazir hoon.\n\n"
                 "Aap batayein, aaj aapke khet ya bagiche ke liye main kya sahayata kar sakta hoon?\n"
-                "• Apni mitti ke anusaar sabse sahi fasal janna chahte hain?\n"
-                "• Khad (Urea, DAP, MOP) ki matra ka hisaab nikalna hai?\n"
-                "• Ya kisi fasal ke keede aur bimari ka upchaar janna hai?"
+                "â€¢ Apni mitti ke anusaar sabse sahi fasal janna chahte hain?\n"
+                "â€¢ Khad (Urea, DAP, MOP) ki matra ka hisaab nikalna hai?\n"
+                "â€¢ Ya kisi fasal ke keede aur bimari ka upchaar janna hai?"
             ),
             'tags': ['AgriBot AI', 'Friendly Chat', 'Kheti Saathi'],
             'actions': [
-                {'type': 'load_crop_sample', 'label': '🌾 Fill Rice Sample', 'crop': 'rice'},
-                {'type': 'trigger_weather_detect', 'label': '📍 Detect Local Weather', 'payload': True},
-                {'type': 'navigate_tab', 'label': '🌾 Open Recommendation Form', 'payload': 'recommend'}
+                {'type': 'load_crop_sample', 'label': 'ðŸŒ¾ Fill Rice Sample', 'crop': 'rice'},
+                {'type': 'trigger_weather_detect', 'label': 'ðŸ“ Detect Local Weather', 'payload': True},
+                {'type': 'navigate_tab', 'label': 'ðŸŒ¾ Open Recommendation Form', 'payload': 'recommend'}
             ]
         }), 200
 
@@ -1253,18 +1259,18 @@ def chat_endpoint():
     if any(k in query for k in identity_triggers):
         return jsonify({
             'text': (
-                "**Mera naam AgriBot (एग्रीबॉट) hai! 🌾**\n\n"
+                "**Mera naam AgriBot (à¤à¤—à¥à¤°à¥€à¤¬à¥‰à¤Ÿ) hai! ðŸŒ¾**\n\n"
                 "Main **AgriSmart AI** ka dedicated AI Kheti Visheshagya (Agricultural Specialist) aur Voice Assistant hoon.\n\n"
                 "**Main aapki in kaamo me madad karta hoon:**\n"
-                "1. 🧪 **Mitti ki Jaanch:** 7 factors (N, P, K, Taapman, Nami, pH, Barish) ko deep neural network se evaluate karke sabse laabhkari fasal batana.\n"
-                "2. 🐛 **Keede aur Bimari:** Kapas ki gulabi sundi, dhaan ka blast, gehu ka rituwa, makkai ka armyworm ka sahi ilaj batana.\n"
-                "3. ⚖️ **Khad ki Matra:** Prati acre Urea, DAP, aur Potash ke kutto ki ganna karna.\n"
-                "4. 💰 **Munafa:** Fasal ki aamdaani, lagat aur profit margin ka vishleshan karna."
+                "1. ðŸ§ª **Mitti ki Jaanch:** 7 factors (N, P, K, Taapman, Nami, pH, Barish) ko deep neural network se evaluate karke sabse laabhkari fasal batana.\n"
+                "2. ðŸ› **Keede aur Bimari:** Kapas ki gulabi sundi, dhaan ka blast, gehu ka rituwa, makkai ka armyworm ka sahi ilaj batana.\n"
+                "3. âš–ï¸ **Khad ki Matra:** Prati acre Urea, DAP, aur Potash ke kutto ki ganna karna.\n"
+                "4. ðŸ’° **Munafa:** Fasal ki aamdaani, lagat aur profit margin ka vishleshan karna."
             ),
             'tags': ['AgriBot Identity', 'AI Specialist'],
             'actions': [
-                {'type': 'navigate_tab', 'label': '🌾 Test Crop Form', 'payload': 'recommend'},
-                {'type': 'navigate_tab', 'label': '📊 View AI Pipeline', 'payload': 'about'}
+                {'type': 'navigate_tab', 'label': 'ðŸŒ¾ Test Crop Form', 'payload': 'recommend'},
+                {'type': 'navigate_tab', 'label': 'ðŸ“Š View AI Pipeline', 'payload': 'about'}
             ]
         }), 200
 
@@ -1273,14 +1279,14 @@ def chat_endpoint():
     if any(k in query for k in gratitude_triggers):
         return jsonify({
             'text': (
-                "**Aapka bohot bohot swagat hai! (आपका बहुत-बहुत स्वागत है!) 🌾**\n\n"
-                "Kheti, mitti aur fasal se juda koi bhi sawal ho — chahe barish ho, khad ho ya beej — bina kisi jhijhak ke poochiye.\n\n"
-                "Ek khushhal kisan hi desh ki shaan hai! Jai Jawan, Jai Kisan! 🚜"
+                "**Aapka bohot bohot swagat hai! (à¤†à¤ªà¤•à¤¾ à¤¬à¤¹à¥à¤¤-à¤¬à¤¹à¥à¤¤ à¤¸à¥à¤µà¤¾à¤—à¤¤ à¤¹à¥ˆ!) ðŸŒ¾**\n\n"
+                "Kheti, mitti aur fasal se juda koi bhi sawal ho â€” chahe barish ho, khad ho ya beej â€” bina kisi jhijhak ke poochiye.\n\n"
+                "Ek khushhal kisan hi desh ki shaan hai! Jai Jawan, Jai Kisan! ðŸšœ"
             ),
             'tags': ['Swagatam', 'Farmer Friendly'],
             'actions': [
-                {'type': 'load_crop_sample', 'label': '🌽 Try Maize Sample', 'crop': 'maize'},
-                {'type': 'navigate_tab', 'label': '💰 Explore Economics', 'payload': 'analytics'}
+                {'type': 'load_crop_sample', 'label': 'ðŸŒ½ Try Maize Sample', 'crop': 'maize'},
+                {'type': 'navigate_tab', 'label': 'ðŸ’° Explore Economics', 'payload': 'analytics'}
             ]
         }), 200
 
@@ -1289,13 +1295,13 @@ def chat_endpoint():
     if any(k == query or query.startswith(k + ' ') for k in ack_triggers):
         return jsonify({
             'text': (
-                "**Ji bilkul! (जी बिल्कुल!)** 👍\n\n"
-                "Aage bataiye — kya aapko apni mitti ki jaanch (soil test) karni hai, live mausam dekhna hai, ya kisi specific fasal (Dhaan, Kapas, Gehu, Makkai) ki jaankari chahiye?"
+                "**Ji bilkul! (à¤œà¥€ à¤¬à¤¿à¤²à¥à¤•à¥à¤²!)** ðŸ‘\n\n"
+                "Aage bataiye â€” kya aapko apni mitti ki jaanch (soil test) karni hai, live mausam dekhna hai, ya kisi specific fasal (Dhaan, Kapas, Gehu, Makkai) ki jaankari chahiye?"
             ),
             'tags': ['Ready to Help', 'AgriBot'],
             'actions': [
-                {'type': 'trigger_weather_detect', 'label': '📍 Check Live Weather', 'payload': True},
-                {'type': 'navigate_tab', 'label': '🌾 Open Recommendation Form', 'payload': 'recommend'}
+                {'type': 'trigger_weather_detect', 'label': 'ðŸ“ Check Live Weather', 'payload': True},
+                {'type': 'navigate_tab', 'label': 'ðŸŒ¾ Open Recommendation Form', 'payload': 'recommend'}
             ]
         }), 200
 
@@ -1304,19 +1310,19 @@ def chat_endpoint():
     if any(k in query for k in salam_triggers):
         return jsonify({
             'text': (
-                "**Walekum Assalam kisan bhai! AgriSmart AI mein aapka dil se swagat hai.** 🌾\n\n"
+                "**Walekum Assalam kisan bhai! AgriSmart AI mein aapka dil se swagat hai.** ðŸŒ¾\n\n"
                 "Main aapka digital kheti advisor hoon. Aap mujhse bolkar ya likhkar apni kheti ke baare mein kuch bhi pooch sakte hain:\n"
-                "• **Mitti ke anusaar Fasal:** Apne khet ke N, P, K aur mausam ke anukool sabse laabhkari fasal\n"
-                "• **Keeda & Rog Ilaj:** Kapas, dhaan, gehu, dalhan ke keedon aur phafund ka organic aur chemical ilaj\n"
-                "• **Khad Ganana:** Ek acre mein Urea, DAP, aur Potash kitne kette lagenge\n"
-                "• **Mausam Jankari:** Aapke ilaqe ka taapman, nami aur barish ka anumaan\n\n"
+                "â€¢ **Mitti ke anusaar Fasal:** Apne khet ke N, P, K aur mausam ke anukool sabse laabhkari fasal\n"
+                "â€¢ **Keeda & Rog Ilaj:** Kapas, dhaan, gehu, dalhan ke keedon aur phafund ka organic aur chemical ilaj\n"
+                "â€¢ **Khad Ganana:** Ek acre mein Urea, DAP, aur Potash kitne kette lagenge\n"
+                "â€¢ **Mausam Jankari:** Aapke ilaqe ka taapman, nami aur barish ka anumaan\n\n"
                 "Bataiye, aaj aapki fasal ya mitti ke liye main kya madad kar sakta hoon?"
             ),
             'tags': ['Walekum Assalam', 'Voice Assistant', 'Kheti Guide'],
             'actions': [
-                {'type': 'trigger_weather_detect', 'label': '📍 Detect My Live Weather', 'payload': True},
-                {'type': 'load_crop_sample', 'label': '🌾 Fill Rice Sample', 'crop': 'rice'},
-                {'type': 'navigate_tab', 'label': '🌾 Open Recommendation Form', 'payload': 'recommend'}
+                {'type': 'trigger_weather_detect', 'label': 'ðŸ“ Detect My Live Weather', 'payload': True},
+                {'type': 'load_crop_sample', 'label': 'ðŸŒ¾ Fill Rice Sample', 'crop': 'rice'},
+                {'type': 'navigate_tab', 'label': 'ðŸŒ¾ Open Recommendation Form', 'payload': 'recommend'}
             ]
         }), 200
 
@@ -1324,54 +1330,54 @@ def chat_endpoint():
     if any(k in query for k in sikh_triggers):
         return jsonify({
             'text': (
-                "**Sat Sri Akal kisan veere! AgriSmart AI vich tuhada swagat hai.** 🌾\n\n"
+                "**Sat Sri Akal kisan veere! AgriSmart AI vich tuhada swagat hai.** ðŸŒ¾\n\n"
                 "Main tuhada digital kheti advisor haan. Tussi bol ke ya likh ke fasal, khad (Urea, DAP), te bimariyan baare puch sakde ho.\n\n"
                 "Dasso, ajj tuhade khet layi ki madad karaan?"
             ),
             'tags': ['Sat Sri Akal', 'Kheti Guide'],
             'actions': [
-                {'type': 'trigger_weather_detect', 'label': '📍 Check Live Weather', 'payload': True},
-                {'type': 'navigate_tab', 'label': '🌾 Open Recommendation Form', 'payload': 'recommend'}
+                {'type': 'trigger_weather_detect', 'label': 'ðŸ“ Check Live Weather', 'payload': True},
+                {'type': 'navigate_tab', 'label': 'ðŸŒ¾ Open Recommendation Form', 'payload': 'recommend'}
             ]
         }), 200
 
-    greeting_triggers = ['hello', 'hi', 'namaste', 'hey', 'namaskar', 'pranam', 'ram ram', 'jai shree ram', 'kem cho', 'vanakkam', 'radhe radhe', 'good morning', 'good afternoon', 'good evening', 'नमस्ते', 'प्रणाम', 'राम राम']
+    greeting_triggers = ['hello', 'hi', 'namaste', 'hey', 'namaskar', 'pranam', 'ram ram', 'jai shree ram', 'kem cho', 'vanakkam', 'radhe radhe', 'good morning', 'good afternoon', 'good evening', 'à¤¨à¤®à¤¸à¥à¤¤à¥‡', 'à¤ªà¥à¤°à¤£à¤¾à¤®', 'à¤°à¤¾à¤® à¤°à¤¾à¤®']
     if any(k in query for k in greeting_triggers):
         return jsonify({
             'text': (
-                "**Namaste! AgriSmart AI mein aapka swagat hai.** 🌾\n\n"
+                "**Namaste! AgriSmart AI mein aapka swagat hai.** ðŸŒ¾\n\n"
                 "Main aapka AI agricultural guide hoon. Aap mujhse bolkar (microphone se) ya likhkar kheti ke sawal pooch sakte hain:\n"
-                "• **Fasal Sifarish:** Apne khet ke N, P, K aur mausam ke hisaab se sabse behtar fasal\n"
-                "• **Keeda / Rog Upchaar:** Kisi bhi fasal ke rog ka sahi ilaj aur dawa ki matra\n"
-                "• **Khad Ganana:** Ek acre mein kitne kette Urea ya DAP lagenge\n"
-                "• **Rajya & Mitti:** Aapke kshetra (Maharashtra, Punjab, UP, Gujarat, Rajasthan) ke anukool fasal\n\n"
+                "â€¢ **Fasal Sifarish:** Apne khet ke N, P, K aur mausam ke hisaab se sabse behtar fasal\n"
+                "â€¢ **Keeda / Rog Upchaar:** Kisi bhi fasal ke rog ka sahi ilaj aur dawa ki matra\n"
+                "â€¢ **Khad Ganana:** Ek acre mein kitne kette Urea ya DAP lagenge\n"
+                "â€¢ **Rajya & Mitti:** Aapke kshetra (Maharashtra, Punjab, UP, Gujarat, Rajasthan) ke anukool fasal\n\n"
                 "Neeche diye gaye buttons me se chunein ya apna sawal poochiye!"
             ),
             'tags': ['Namaste', 'Voice Assistant', 'Kheti Guide'],
             'actions': [
-                {'type': 'trigger_weather_detect', 'label': '📍 Detect My Live Weather', 'payload': True},
-                {'type': 'load_crop_sample', 'label': '🌾 Fill Rice Sample', 'crop': 'rice'},
-                {'type': 'load_crop_sample', 'label': '🌽 Fill Maize Sample', 'crop': 'maize'},
-                {'type': 'navigate_tab', 'label': '📊 View ML Pipeline', 'payload': 'about'}
+                {'type': 'trigger_weather_detect', 'label': 'ðŸ“ Detect My Live Weather', 'payload': True},
+                {'type': 'load_crop_sample', 'label': 'ðŸŒ¾ Fill Rice Sample', 'crop': 'rice'},
+                {'type': 'load_crop_sample', 'label': 'ðŸŒ½ Fill Maize Sample', 'crop': 'maize'},
+                {'type': 'navigate_tab', 'label': 'ðŸ“Š View ML Pipeline', 'payload': 'about'}
             ]
         }), 200
 
     # 9. Natural Friendly Fallback
     return jsonify({
         'text': (
-            f"Aapne **'{user_msg}'** ke baare mein poocha hai. 🌾\n\n"
+            f"Aapne **'{user_msg}'** ke baare mein poocha hai. ðŸŒ¾\n\n"
             "Kisan bhai/behan, main aapko kheti ke in mukhya vishayon par poori jankari de sakta hoon:\n"
-            "• **Fasal Recommendation:** Apne 7 parameters batayein aur neural network model se sabse sahi fasal jaaniye.\n"
-            "• **Khad & Urvarak (Fertilizers):** Urea, DAP, Potash aur Zinc ki sahi matra prati acre.\n"
-            "• **Keede & Bimari (Pest & Disease):** Dhaan, Kapas, Gehu, Makkai, Dalhan ke rogon ka organic aur chemical ilaj.\n"
-            "• **Live Mausam (Weather):** Apne zile ka taapman, nami aur barish ka anumaan.\n\n"
+            "â€¢ **Fasal Recommendation:** Apne 7 parameters batayein aur neural network model se sabse sahi fasal jaaniye.\n"
+            "â€¢ **Khad & Urvarak (Fertilizers):** Urea, DAP, Potash aur Zinc ki sahi matra prati acre.\n"
+            "â€¢ **Keede & Bimari (Pest & Disease):** Dhaan, Kapas, Gehu, Makkai, Dalhan ke rogon ka organic aur chemical ilaj.\n"
+            "â€¢ **Live Mausam (Weather):** Apne zile ka taapman, nami aur barish ka anumaan.\n\n"
             "Aap neeche diye gaye quick buttons dabakar shuru kar sakte hain ya microphone se bol sakte hain!"
         ),
         'tags': ['Kheti Sahayata', 'AgriBot Guide'],
         'actions': [
-            {'type': 'trigger_weather_detect', 'label': '📍 Auto-Detect Local Weather', 'payload': True},
-            {'type': 'navigate_tab', 'label': '🌾 Open Recommendation Form', 'payload': 'recommend'},
-            {'type': 'navigate_tab', 'label': '💰 Explore Economic Studio', 'payload': 'analytics'}
+            {'type': 'trigger_weather_detect', 'label': 'ðŸ“ Auto-Detect Local Weather', 'payload': True},
+            {'type': 'navigate_tab', 'label': 'ðŸŒ¾ Open Recommendation Form', 'payload': 'recommend'},
+            {'type': 'navigate_tab', 'label': 'ðŸ’° Explore Economic Studio', 'payload': 'analytics'}
         ]
     }), 200
 
@@ -1408,3 +1414,4 @@ if __name__ == '__main__':
     print(f" Test Accuracy: {model_metrics['test_accuracy']}%")
     print(f"=======================================================\n")
     app.run(host='0.0.0.0', port=port, debug=False)
+
